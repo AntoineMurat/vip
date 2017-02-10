@@ -1,0 +1,122 @@
+Cliquez sur une lettre :
+
+{{#each premieresLettres}}
+	<a href="/repertoire/{{this}}">{{this}}</a>
+{{/each}}
+
+<div class="details">
+
+	<div class="vip">
+		<img src="/images/vip/{{vip.photo.adresse}}">
+	</div>
+
+	<b>Nom : </b> {{vip.prenom}} {{vip.nom}} <br><br>
+
+	<b>Date de naissance : </b>  {{formatDate vip.naissance 'DD MMMM YYYY'}} <br><br>
+
+	<b>Nationalité : </b>  {{vip.nationalite.nom}} <br><br>
+
+
+	{{#if vip.professions.acteur}}
+
+		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Acteur{{else}}Actrice{{/ifCond}}<br>
+
+		<b>Principal(aux) film(s) : </b>  
+
+		{{#each vip.professions.acteur.films}}
+
+			{{this.titre}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.realisateur.id}}">{{this.realisateur.prenom}} {{this.realisateur.nom}}</a> <br>
+
+		{{/each}}<br>
+
+	{{/if}}
+
+	{{#if vip.professions.mannequin}}
+
+		<b>Profession : </b> Mannequin<br>
+
+		<b>Principal(aux) défilé(s) : </b>  
+
+		{{#each vip.professions.mannequin.defiles}}
+
+			{{this.lieu}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.couturier.id}}">{{this.couturier.prenom}} {{this.couturier.nom}}</a> <br>
+
+		{{/each}}<br>
+
+	{{/if}}
+
+	{{#if vip.professions.chanteur}}
+
+		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Chanteur{{else}}Chanteuse{{/ifCond}} ({{vip.professions.chanteur.specialite}})<br>
+
+		<b>Principal(aux) album(s) : </b>
+
+		{{#each vip.professions.chanteur.albums}}
+
+			{{this.titre}} ({{formatDate this.date 'MMMM YYYY'}}) chez {{this.maisondisque.nom}}<br>
+
+		{{/each}}<br>
+
+	{{/if}}
+
+	{{#if vip.professions.couturier}}
+
+		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Couturier{{else}}Couturière{{/ifCond}}<br>
+
+		<b>Principal(aux) défilé(s) : </b>  
+
+		{{#each vip.professions.couturier.defiles}}
+
+			{{this.lieu}} ({{formatDate this.date 'MMMM YYYY'}})<br>
+
+		{{/each}}<br>
+
+
+	{{/if}}
+
+	{{#if vip.professions.realisateur}}
+
+		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Réalisateur{{else}}Réalisatrice{{/ifCond}} <br>
+		
+		<b>Principal(aux) film(s) : </b>  
+
+		{{#each vip.professions.realisateur.films}}
+
+			{{this.titre}} ({{formatDate this.date 'MMMM YYYY'}}) <br>
+
+		{{/each}}<br>
+
+	{{/if}}
+
+	{{#if vip.mariages.length}}
+		<b>Mariage(s) : </b>
+		{{#each vip.mariages}}
+			<a href="/vip/{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
+			({{formatDate this.debut 'MMMM YYYY'}} - {{formatDate this.fin 'MMMM YYYY'}})
+			<b>lieu : </b>
+			{{this.lieu}}
+			<b>motif fin :</b>
+			{{this.motiffin}}
+			<br>
+		{{/each}}<br>
+	{{/if}}
+
+	{{#if vip.liaisons.length}}
+		<b>Liaisons</b>
+		{{#each vip.liaisons}}
+			<a href="/vip/{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
+			({{formatDate this.date 'MMMM YYYY'}}) 
+			<b>motif :</b>
+			{{this.motiffin}}
+			<br>
+		{{/each}}<br>
+	{{/if}}
+
+	<b>Qui suis-je ? : </b>{{vip.biographie}}
+
+	<div>
+		{{#each vip.photos}}
+			<img src="/images/vip/{{this.adresse}}" class="photos">
+		{{/each}}
+	</div>
+</div>

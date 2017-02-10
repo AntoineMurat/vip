@@ -81,3 +81,27 @@ a  {
 .traitVertical {
   border-left: 1px white solid;
 }
+
+.vip{
+    width: 150px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.vip img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.photos{
+    height: 100px;
+    margin-right: 5px;
+}
+
+.details {
+    text-align: left;
+}
+
+.details .vip {
+    float: left;
+}

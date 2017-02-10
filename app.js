@@ -32,14 +32,14 @@ app.use(function(request, response, next){
 
 var exphbs = require('express-handlebars');
 app.set('view engine', 'handlebars'); //nom de l'extension des fichiers
-var handlebars  = require('./helpers/handlebars.js')(exphbs); //emplacement des helpers
+var handlebars  = require(__dirname+'/helpers/handlebars.js')(exphbs); //emplacement des helpers
 // helpers : extensions d'handlebars
 
 app.engine('handlebars', handlebars.engine);
 
 
 // chargement du routeur
-require('./router/router')(app);
+require(__dirname+'/router/router')(app);
 
 
 http.createServer(app).listen(app.get('port'), function(){
