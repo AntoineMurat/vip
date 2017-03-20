@@ -8,13 +8,17 @@ Cliquez sur une lettre :
 
 	{{#each vips}}
 
-		<div class="vip">
+		<a href="/vip/{{this.id}}">
 
-			<img src="/images/vip/{{this.photo.adresse}}">
+			<div class="vip">
 
-			<a href="/vip/{{this.id}}">{{this.prenom}} {{this.nom}}</a>
+				<img src="/images/vip/{{this.photo.adresse}}">
 
-		</div>
+				{{this.prenom}} {{this.nom}}
+
+			</div>
+
+		</a>
 
 	{{/each}}
 

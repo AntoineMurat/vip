@@ -1,0 +1,23 @@
+{{> vipsMenu}}
+
+<fieldset class="adminOnTheRight">
+
+	<legend>{{title}}</legend>
+
+	<form action="#" method="POST">
+
+		<label for="vip">VIP à modifier</label>
+
+		<select name="vip" id="vip">
+
+			{{#each vips}}
+				<option value="{{this.id}}">{{this.nom}} {{this.prenom}}</option>
+			{{/each}}
+
+		</select>
+
+		<button type="submit" value="submit">Modifier</button>
+
+	</form>
+
+</fieldset>

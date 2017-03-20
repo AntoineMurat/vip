@@ -1,0 +1,72 @@
+<div class="left">
+
+	{{#if vip}}
+
+		<div>
+
+			<div>{{vip.nom}} {{vip.prenom}}</div>
+
+			<img src="/images/vip/{{photo.adresse}}">
+
+		</div>
+
+		<div class="currentPhoto">
+
+			{{#ifCond photo.numero '>' 1 }}
+
+				<a href="/album/{{vip.id}}/{{math photo.numero '-' 1}}/{{page}}"> ⟨⟨ </a>
+
+			{{/ifCond}}
+
+			{{#ifCond photo.numero '<' vip.photos.length }}
+
+				<a href="/album/{{vip.id}}/{{math photo.numero '+' 1}}/{{page}}"> ⟩⟩ </a>
+
+			{{/ifCond}}
+
+		</div>
+
+		<fieldset>
+
+			<legend>Commentaire</legend>
+
+			{{photo.sujet}}
+
+		</fieldset>
+
+	{{else}}
+
+		<p>Cliquez sur une VIP pour voir ses photos.</p>
+
+	{{/if}}
+
+</div>
+
+<div class="right">
+
+	{{#each vips}}
+
+		<a href="/album/{{this.id}}/1/{{../page}}">
+			<img src="/images/vip/{{this.photo.adresse}}">
+		</a>
+
+	{{/each}}
+
+	{{#ifCond page '!=' 1}}
+		<a href="/album/{{#if vip}}{{vip.id}}{{else}}-1{{/if}}/{{#if vip}}{{photo.numero}}{{else}}1{{/if}}/1">
+			Début
+		</a>
+		<a href="/album/{{#if vip}}{{vip.id}}{{else}}-1{{/if}}/{{#if vip}}{{photo.numero}}{{else}}1{{/if}}/{{math page '-' 1}}">
+			Précédent
+		</a>
+	{{/ifCond}}
+
+	{{#ifCond page '!=' last}}
+		<a href="/album/{{#if vip}}{{vip.id}}{{else}}-1{{/if}}/{{#if vip}}{{photo.numero}}{{else}}1{{/if}}/{{math page '+' 1}}">
+			Suivant
+		</a>
+		<a href="/album/{{#if vip}}{{vip.id}}{{else}}-1{{/if}}/{{#if vip}}{{photo.numero}}{{else}}1{{/if}}/{{last}}">
+			Fin
+		</a>
+	{{/ifCond}}
+</div>

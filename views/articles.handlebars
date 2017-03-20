@@ -1,0 +1,53 @@
+<div class="articles">
+
+	{{#each articles}}
+
+		<fieldset class="article">
+
+			<legend>Article</legend>
+
+			<div class="nom">{{../vip.prenom}} {{../vip.nom}}</nom>
+
+			{{this.resume}}
+
+			<div class="bottom">
+
+				<div class="date">
+					[Ajouté le {{formatDate this.date 'DD MMMM YYYY'}}]
+				</div>
+
+				<a class="lienFiche" href="/vip/{{../vip.id}}">
+					voir sa fiche
+				</a>
+
+			</div>
+
+		</fieldset>
+
+	{{/each}}
+
+	<fieldset>
+
+		<legend>Info</legend>
+
+		Choisissez une VIP pour voir les articles la concernant.
+
+	</fieldset>
+
+</div>
+
+<nav class="vipsArticle">
+	<div class="entete">
+		<img src="/images/vips.png">
+	</div>
+	<ul>
+
+		{{#each vips}}
+
+			<li><a href="/articles/{{this.id}}">{{this.prenom}} {{this.nom}}</a></li>
+
+		{{/each}}
+
+	</ul>
+	
+</nav>

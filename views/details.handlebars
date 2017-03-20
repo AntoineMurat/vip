@@ -12,7 +12,7 @@ Cliquez sur une lettre :
 
 	<b>Nom : </b> {{vip.prenom}} {{vip.nom}} <br><br>
 
-	<b>Date de naissance : </b>  {{formatDate vip.naissance 'DD MMMM YYYY'}} <br><br>
+	<b>Date de naissance : </b>{{formatDate vip.naissance 'DD MMMM YYYY'}}<br><br>
 
 	<b>Nationalité : </b>  {{vip.nationalite.nom}} <br><br>
 
@@ -21,11 +21,11 @@ Cliquez sur une lettre :
 
 		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Acteur{{else}}Actrice{{/ifCond}}<br>
 
-		<b>Principal(aux) film(s) : </b>  
+		{{#if vip.professions.acteur.films.length}}<b>Principal(aux) film(s) : </b>{{/if}}
 
 		{{#each vip.professions.acteur.films}}
 
-			{{this.titre}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.realisateur.id}}">{{this.realisateur.prenom}} {{this.realisateur.nom}}</a> <br>
+			{{this.titre}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.realisateur.id}}" class="tooltip-trigger" data-id="{{this.realisateur.id}}">{{this.realisateur.prenom}} {{this.realisateur.nom}}</a> <br>
 
 		{{/each}}<br>
 
@@ -35,11 +35,10 @@ Cliquez sur une lettre :
 
 		<b>Profession : </b> Mannequin<br>
 
-		<b>Principal(aux) défilé(s) : </b>  
-
+		{{#if vip.professions.mannequin.defiles.length}}<b>Principal(aux) défilé(s) : </b>{{/if}}  
 		{{#each vip.professions.mannequin.defiles}}
 
-			{{this.lieu}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.couturier.id}}">{{this.couturier.prenom}} {{this.couturier.nom}}</a> <br>
+			{{this.lieu}} ({{formatDate this.date 'MMMM YYYY'}}) de <a href="/vip/{{this.couturier.id}}" class="tooltip-trigger" data-id="{{this.couturier.id}}">{{this.couturier.prenom}} {{this.couturier.nom}}</a> <br>
 
 		{{/each}}<br>
 
@@ -49,7 +48,7 @@ Cliquez sur une lettre :
 
 		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Chanteur{{else}}Chanteuse{{/ifCond}} ({{vip.professions.chanteur.specialite}})<br>
 
-		<b>Principal(aux) album(s) : </b>
+		{{#if vip.professions.chanteur.albums.length}}<b>Principal(aux) album(s) : </b>{{/if}}
 
 		{{#each vip.professions.chanteur.albums}}
 
@@ -63,7 +62,7 @@ Cliquez sur une lettre :
 
 		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Couturier{{else}}Couturière{{/ifCond}}<br>
 
-		<b>Principal(aux) défilé(s) : </b>  
+		{{#if vip.professions.couturier.defiles.length}}<b>Principal(aux) défilé(s) : </b>{{/if}}  
 
 		{{#each vip.professions.couturier.defiles}}
 
@@ -78,7 +77,7 @@ Cliquez sur une lettre :
 
 		<b>Profession : </b> {{#ifCond vip.sexe '==' 'M'}}Réalisateur{{else}}Réalisatrice{{/ifCond}} <br>
 		
-		<b>Principal(aux) film(s) : </b>  
+		{{#if vip.professions.realisateur.films.length}}<b>Principal(aux) film(s) : </b>{{/if}}
 
 		{{#each vip.professions.realisateur.films}}
 
@@ -116,7 +115,7 @@ Cliquez sur une lettre :
 
 	<div>
 		{{#each vip.photos}}
-			<img src="/images/vip/{{this.adresse}}" class="photos">
+			<img src="/images/vip/{{this.adresse}}" data-commentaire="{{this.commentaire}}" data-sujet="{{this.sujet}}" class="photos agrandir">
 		{{/each}}
 	</div>
 </div>

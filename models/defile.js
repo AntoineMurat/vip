@@ -1,7 +1,7 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let vipModel = require(__dirname+'/vip')
 
-module.exports.findByCouturierId = (id) => new Promise(
+module.exports.findByCouturierId = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT DEFILE_NUMERO as id,
@@ -10,13 +10,13 @@ module.exports.findByCouturierId = (id) => new Promise(
 				   FROM defile
 				   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_defiles) => {
+		db.query(sql, [id]).then(_defiles => {
 
 			resolve(_defiles)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération des défilés du couturier ${id}.`)
 
 		})
@@ -24,7 +24,7 @@ module.exports.findByCouturierId = (id) => new Promise(
 	}
 )
 
-module.exports.findByMannequinId = (id) => new Promise(
+module.exports.findByMannequinId = id => new Promise(
 	(resolve, reject) => {
 
 		let defiles
@@ -37,15 +37,15 @@ module.exports.findByMannequinId = (id) => new Promise(
 				   JOIN defiledans dd ON dd.DEFILE_NUMERO = d.DEFILE_NUMERO
 				   WHERE dd.VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_defiles) => {
+		db.query(sql, [id]).then(_defiles => {
 
 			defiles = _defiles
 
 			return Promise.all(
-				defiles.map((defile) => vipModel.findById(defile.couturier))
+				defiles.map(defile => vipModel.findById(defile.couturier))
 			)
 
-		}).then((_couturiers) => {
+		}).then(_couturiers => {
 
 			_couturiers.forEach((couturier, index) => {
 
@@ -55,9 +55,9 @@ module.exports.findByMannequinId = (id) => new Promise(
 
 			resolve(defiles)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération des défilés du mannequin ${id}.`)
 
 		})

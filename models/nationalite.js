@@ -1,6 +1,6 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 
-module.exports.findById = (id) => new Promise(
+module.exports.findById = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT NATIONALITE_NUMERO AS id, 
@@ -8,13 +8,21 @@ module.exports.findById = (id) => new Promise(
         		   FROM nationalite
         		   WHERE NATIONALITE_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_nationalite) => {
+		db.query(sql, [id]).then(_nationalite => {
 
-			resolve(_nationalite[0])
+			if (_nationalite[0]){
 
-		}).catch((msg) => {
+				resolve(_nationalite[0])
 
-			console.log(msg)
+			} else {
+
+				reject(`Nationalité ${id} introuvable.`)
+
+			}
+
+		}).catch(msg => {
+
+			console.error(msg)
 			reject(`Erreur lors de la récupération de la nationalité ${id}.`)
 
 		})
@@ -22,20 +30,20 @@ module.exports.findById = (id) => new Promise(
 	}
 )
 
-module.exports.find = (id) => new Promise(
+module.exports.find = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT NATIONALITE_NUMERO AS id, 
 				   NATIONALITE_NOM as nom
         		   FROM nationalite;`
 
-		db.query(sql, [id]).then((_nationalitess) => {
+		db.query(sql, [id]).then(_nationalites => {
 
 			resolve(_nationalites)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération de l'ensemble des nationalités.`)
 
 		})

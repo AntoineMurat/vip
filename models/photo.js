@@ -1,6 +1,6 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 
-module.exports.findByVipId = (id) => new Promise(
+module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT PHOTO_ADRESSE as adresse,
@@ -11,13 +11,13 @@ module.exports.findByVipId = (id) => new Promise(
         		   WHERE VIP_NUMERO = ? 
         		   ORDER BY PHOTO_NUMERO;`
 
-	    db.query(sql, [id]).then((_photos) => {
+	    db.query(sql, [id]).then(_photos => {
 
 	    	resolve(_photos)
 
-	    }).catch((msg) => {
+	    }).catch(msg => {
 
-	    	console.log(err)
+	    	console.log(msg)
 	        reject(`Erreur lors de la récupération des photos de la Vip ${id}.`)
 	    
 	    })
@@ -25,7 +25,66 @@ module.exports.findByVipId = (id) => new Promise(
 	}
 )
 
-module.exports.findPhotoPrincipaleByVipId = (id) => new Promise(
+module.exports.insert = photo => new Promise(
+	(resolve, reject) => {
+
+		// On insère en première position si on a pas de photo de profil.
+
+		sql = `INSERT INTO photo SET ?`
+
+		module.exports.findByVipId(photo.vip).then(photos =>
+
+			db.query(sql,{
+
+				PHOTO_NUMERO: (photos.length === 0 || photos[0].numero !== 1) ? 1 : (photos.length+1),
+		    	PHOTO_ADRESSE: photo.adresse,
+		    	PHOTO_SUJET: photo.sujet,
+		    	PHOTO_COMMENTAIRE: photo.commentaire,
+		    	VIP_NUMERO: photo.vip
+
+		    })
+
+		).then(res => {
+
+	    	resolve(res.insertId)
+
+	    }).catch(msg => {
+
+	    	console.log(msg)
+	        reject(`Erreur lors de la récupération des photos de la Vip ${id}.`)
+	    
+	    })
+
+	}
+)
+
+module.exports.removeByVipById = (vip, id) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `DELETE FROM photo WHERE VIP_NUMERO = ? AND PHOTO_NUMERO = ?;`
+
+	    db.query(sql, [vip, id]).then(res => {
+
+			if (res.affectedRows){
+
+				resolve(true)
+
+			} else {
+
+				reject(`Photo ${id} introuvable.`)
+
+			}
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression de la photo ${id}.`)
+
+		})
+	}
+)
+
+module.exports.findPhotoPrincipaleByVipId = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT PHOTO_ADRESSE as adresse,
@@ -35,13 +94,21 @@ module.exports.findPhotoPrincipaleByVipId = (id) => new Promise(
         		   FROM photo
         		   WHERE VIP_NUMERO = ? AND PHOTO_NUMERO = 1;`;
 
-	    db.query(sql, [id]).then((_photo) => {
+	    db.query(sql, [id]).then(_photo => {
 
-	    	resolve(_photo[0])
+	    	if (_photo[0]) {
 
-	    }).catch((msg) => {
+		    	resolve(_photo[0])
 
-	    	console.log(err)
+		    } else {
+
+		    	reject(`Photo principale de la Vip ${id} introuvable.`)
+
+		    }
+
+	    }).catch(msg => {
+
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération de la photo principale de la Vip ${id}.`)
 	    
 	    })
@@ -49,7 +116,7 @@ module.exports.findPhotoPrincipaleByVipId = (id) => new Promise(
 	}
 )
 
-module.exports.findByArticleId = (id) => new Promise(
+module.exports.findByArticleId = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT PHOTO_ADRESSE as adresse,
@@ -60,13 +127,13 @@ module.exports.findByArticleId = (id) => new Promise(
         		   JOIN comporte c ON c.PHOTO_NUMERO = p.PHOTO_NUMERO
         		   WHERE ARTICLE_NUMERO = ?;`;
 
-	    db.query(sql, [id]).then((_photos) => {
+	    db.query(sql, [id]).then(_photos => {
 
 	    	resolve(_photos)
 
-	    }).catch((msg) => {
+	    }).catch(msg => {
 
-	    	console.log(err)
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération des photos de l'article ${id}.`)
 	    
 	    })

@@ -1,7 +1,7 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let exemplaireModel = require(__dirname+"/exemplaire")
 
-module.exports.findByVipId = (id) => new Promise(
+module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 
 		let articles
@@ -16,15 +16,15 @@ module.exports.findByVipId = (id) => new Promise(
         		   JOIN apoursujet aps ON aps.ARTICLE_NUMERO = a.ARTICLE_NUMERO
         		   WHERE VIP_NUMERO = ?;`
 
-	    db.query(sql, [id]).then((_articles) => {
+	    db.query(sql, [id]).then(_articles => {
 
 	    	articles = _articles
 
 	    	return Promise.all(
-	    		articles.map((article) => exemplaireModel.findById(article.exemplaire))
+	    		articles.map(article => exemplaireModel.findById(article.exemplaire))
 	    	)
 
-	    }).then((_exemplaires) => {
+	    }).then(_exemplaires => {
 
 	    	_exemplaires.forEach((exemplaire, index) => {
 
@@ -34,9 +34,9 @@ module.exports.findByVipId = (id) => new Promise(
 
 	    	resolve(articles)
 
-	    }).catch((msg) => {
+	    }).catch(msg => {
 
-	    	console.log(err)
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération des articles de la Vip ${id}.`)
 	    
 	    })

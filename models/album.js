@@ -1,7 +1,7 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let maisondisqueModel = require(__dirname+'/maisondisque')
 
-module.exports.findByVipId = (id) => new Promise(
+module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 
 		let albums
@@ -14,15 +14,15 @@ module.exports.findByVipId = (id) => new Promise(
 				   JOIN composer c ON c.ALBUM_NUMERO = a.ALBUM_NUMERO
 				   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_albums) => {
+		db.query(sql, [id]).then(_albums => {
 
 			albums = _albums
 
 			return Promise.all(
-				albums.map((album) => maisondisqueModel.findById(album.maisondisque))
+				albums.map(album => maisondisqueModel.findById(album.maisondisque))
 			)
 
-		}).then((_maisondisques) => {
+		}).then(_maisondisques => {
 
 			_maisondisques.forEach((maisondisque, index) => {
 
@@ -32,9 +32,9 @@ module.exports.findByVipId = (id) => new Promise(
 
 			resolve(albums)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération des albums de la Vip ${id}.`)
 
 		})

@@ -105,3 +105,143 @@ a  {
 .details .vip {
     float: left;
 }
+
+#over {
+
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.fullscale {
+    max-height: calc(100% - 100px);
+    max-width: calc(100% - 200px);
+    height: 100%;
+}
+
+#over p {
+    color: gray;
+}
+
+#over small {
+    color: darkgray;
+}
+
+.tooltip {
+    position: absolute;
+    border-radius: 5px;
+    border: 1px black solid;
+    height: 125px;
+    width: 350px;
+    background: white;
+    text-align: left;
+    padding: 5px;
+}
+
+.tooltip p {
+    height: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tooltip p:after {
+    content: '...';
+    position: absolute;
+    bottom: 15px;
+    right: 220px;
+}
+
+.tooltip img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    float: left;
+}
+
+.articles{
+    display: inline-block;
+    width: 74%;
+    vertical-align: top;
+    text-align: left;
+}
+
+.vipsArticle{
+    display: inline-block;
+    width: 24%;
+    border-radius: 5px;
+    border: solid black 1px;
+    vertical-align: top;
+}
+
+.vipsArticle ul{
+    padding: 0;
+}
+
+.vipsArticle li{
+    list-style: none;
+    text-decoration: none;
+}
+
+.vipsArticle .entete{
+    background-color: black;
+}
+
+.article .date{
+    display: inline-block;
+}
+
+.article .lienFiche{
+    float: right;
+    right: 0;
+}
+
+.article .bottom{
+    background-color: rgba(0, 0, 255, 0.2);
+}
+
+.left{
+    display: inline-block;
+    width: 74%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.right{
+    display: inline-block;
+    width: 24%;
+    border-radius: 5px;
+    border: solid black 1px;
+    vertical-align: top;
+    height: 300px;
+}
+
+.right img {
+    width: 100%;
+    height: 100%;
+    width: calc(25% - 5px);
+    height: calc(33% - 10px);
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.right img:hover{
+    opacity: 1;
+}
+
+#previous {
+    color: white;
+    position: absolute;
+    left: 20px;
+    bottom: 100px;
+}
+
+#next{
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+}

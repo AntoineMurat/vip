@@ -1,0 +1,32 @@
+{{> photosMenu}}
+
+<fieldset class="adminOnTheRight">
+
+	<legend>{{title}}</legend>
+
+	<select name="vip" id="vipPhotoDelete">
+		<option disabled>Sélectionnez un VIP...</option>
+		{{#each vips}}
+			<option value="{{this.id}}">{{this.nom}} {{this.prenom}}</option>
+		{{/each}}
+
+	</select>
+
+	{{#each vips}}
+
+		<div class="listePhotos" id="photos{{this.id}}" style="display:none">
+
+			{{#each this.photos}}
+
+				<form action="#" method="POST">
+					<img src="{{this.adresse}}">
+					<input type="hidden" value="{{this.id}}">
+				</form>
+
+			{{/each}} 
+
+		</div>
+
+	{{/each}}
+
+</fieldset>

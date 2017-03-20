@@ -9,19 +9,30 @@
     <body class="monBody">
         <div id="container">
             <div id="header">
-                <div class="baniere"><img src="/images/sixvoix.png" alt="SIXVOIX l'encyclopédie des stars" /> </div>
+                <div class="baniere"><img src="/images/sixvoix.png" alt="SIXVOIX l'encyclopédie des stars" /> 
+
+
+                {{#if session.login}}
+
+                    <div class="connexion">
+
+                        Bonjour {{session.login}}
+
+                        <a href="/deconnexion"><i>déconnexion</i></a>
+
+                    </div>
+
+                {{/if}}
+
+                </div>
             </div>
             <div class="menu_haut">
               <ul>
-                <li><a href="/accueil">ACCUEIL</a></li>
-                <li class="traitVertical"><a href="/repertoire">REPERTOIRE DES STARS</a></li>
-                <li class="traitVertical"><a href="/album">ALBUM PHOTO</a></li>
-                <li class="traitVertical"><a href="/articles">ARTICLES</a></li>
+                <li><a href="/accueil">VIPS</a></li>
+                <li class="traitVertical"><a href="/repertoire">PHOTOS</a></li>
               </ul>
             </div>
             <div id="contenu">
-                <br/>
-                <br/>
                 {{{body}}}
             </div>
             <div id="footer">
@@ -34,7 +45,5 @@
                 <img src="/images/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
             </div>
         </div>
-        <script src="/js/jquery.js"></script>
-        <script src="/js/main.js"></script>
     </body>
 </html>

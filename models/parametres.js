@@ -8,16 +8,16 @@ module.exports.checkLogins = (login, password) => new Promise(
 				   FROM parametres
 				   WHERE LOGIN = ? AND PASSWD = ?;`
 
-		let hash = crypto.createHash('sha256').update(password).digest('base64')
+		let hash = crypto.createHash('sha256').update(password).digest('hex').toString()
 
-		db.query(sql, [login, hash]).then((_logged) => {
+		db.query(sql, [login, hash]).then(_logged => {
 
 			resolve(_logged.length != 0)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
-			reject(`Erreur lors de la connexion de la Vip ${id}.`)
+			console.error(msg)
+			reject(`Erreur lors de la connexion de la ${login}.`)
 
 		})
 

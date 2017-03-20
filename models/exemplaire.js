@@ -1,6 +1,6 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 
-module.exports.findById = (id) => new Promise(
+module.exports.findById = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT EXEMPLAIRE_NUMERO as id,
@@ -8,13 +8,21 @@ module.exports.findById = (id) => new Promise(
         		   FROM exemplaire
         		   WHERE EXEMPLAIRE_NUMERO = ?;`
 
-	    db.query(sql, [id]).then((_exemplaire) => {
+	    db.query(sql, [id]).then(_exemplaire => {
 
-	    	resolve(_exemplaire[0])
+	    	if (_exemplaire[0]){
 
-	    }).catch((msg) => {
+	    		resolve(_exemplaire[0])
 
-	    	console.log(err)
+	    	} else {
+
+	    		reject(`Exemplaire ${id} introuvable.`)
+
+	    	}
+
+	    }).catch(msg => {
+
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération de l'exemplaire ${id}.`)
 	    
 	    })

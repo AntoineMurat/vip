@@ -1,0 +1,46 @@
+{{> vipsMenu}}
+
+<fieldset class="adminOnTheRight">
+
+	<legend>{{title}}</legend>
+
+	<form action="#" method="POST">
+
+		<input type="hidden" name="id" id="id" value="{{vip.id}}">
+
+		<label for="nom">Nom* :</label>
+		<input type="text" name="nom" id="nom" value="{{vip.nom}}" required>
+
+		<label for="prenom">Prénom* :</label>
+		<input type="text" name="prenom" id="prenom" value="{{vip.prenom}}" required>
+
+		<label for="sexe">Sexe :</label>
+		<select name="sexe" id="sexe">
+			<option value="M" {{#ifCond vip.sexe '==' "M"}}selected{{/ifCond}}>Masculin</option>
+			<option value="F" {{#ifCond vip.sexe '==' "F"}}selected{{/ifCond}}>Féminin</option>
+		</select>
+
+		<label for="naissance">Date de naissance :</label>
+		<input type="date" name="naissance" id="naissance" value="{{vip.naissance}}">
+
+		<label for="nationalite">Nationalité :</label>
+		<select name="nationalite" id="nationalite">
+			{{#each nationalites}}
+				<option value="{{this.id}}" {{#ifCond this.id "==" vip.nationalite}}selected{{/ifCond}}>{{this.nom}}</option>
+			{{/each}}
+		</select>
+
+		<label for="biographie">Commentaire :</label>
+		<textarea name="biographie" id="biographie">{{vip.biographie}}</textarea>
+
+		<label for="photo">Sélectionner l'image :</label>
+		<input type="file" name="photo" id="photo">
+
+		<label for="sujet">Sujet :</label>
+		<textarea name="sujet" id="sujet">{{vip.photo.sujet}}</textarea>
+
+		<button type="submit" value="submit">Modifier</button>
+
+	</form>
+
+</fieldset>

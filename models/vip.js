@@ -20,13 +20,13 @@ module.exports.getPremieresLettresNoms = () =>  new Promise(
         		   GROUP BY LEFT(VIP_NOM, 1)
         		   ORDER BY lettre;`
 
-		db.query(sql).then((_firstLetters) => {
+		db.query(sql).then(_firstLetters => {
 
-			resolve(_firstLetters.map((ligne) => ligne.lettre))
+			resolve(_firstLetters.map(ligne => ligne.lettre))
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject("Erreur lors de la récupération des premières lettres.")
 
 		})
@@ -34,7 +34,7 @@ module.exports.getPremieresLettresNoms = () =>  new Promise(
 	}
 )
 
-module.exports.findByFirstLetter = (lettre) => new Promise(
+module.exports.findByFirstLetter = lettre => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT VIP_NUMERO AS id, VIP_NOM as nom,
@@ -44,13 +44,13 @@ module.exports.findByFirstLetter = (lettre) => new Promise(
 				   FROM vip
 				   WHERE VIP_NOM LIKE ?;`
 
-		db.query(sql, [lettre+"%"]).then((_vips) => {
+		db.query(sql, [lettre+"%"]).then(_vips => {
 
 			resolve(_vips)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject("Erreur lors de la récupération des vips dont le nom commence par ${lettre}.")
 
 		})
@@ -58,7 +58,7 @@ module.exports.findByFirstLetter = (lettre) => new Promise(
 	}
 )
 
-module.exports.findById = (id) => new Promise(
+module.exports.findById = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT VIP_NUMERO AS id, VIP_NOM as nom,
@@ -68,14 +68,49 @@ module.exports.findById = (id) => new Promise(
         		   FROM vip
         		   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_vip) => {
+		db.query(sql, [id]).then(_vip => {
 
-			resolve(_vip[0])
+			if (_vip[0]){
 
-		}).catch((msg) => {
+				resolve(_vip[0])
 
-			console.log(msg)
+			} else {
+
+				reject(`Vip ${id} introuvable.`)
+
+			}
+
+		}).catch(msg => {
+
+			console.error(msg)
     		reject(`Erreur lors de la récupération de la Vip ${id}.`)
+
+		})
+	}
+)
+
+module.exports.removeById = id => new Promise(
+	(resolve, reject) => {
+
+		let sql = `DELETE FROM vip
+        		   WHERE VIP_NUMERO = ?;`
+
+		db.query(sql, [id]).then(res => {
+
+			if (res.affectedRows){
+
+				resolve(true)
+
+			} else {
+
+				reject(`Vip ${id} introuvable.`)
+
+			}
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression de la Vip ${id}.`)
 
 		})
 	}
@@ -90,13 +125,84 @@ module.exports.find = () => new Promise(
         		   NATIONALITE_NUMERO as nationalite
         		   FROM vip;`
 
-		db.query(sql).then((_vips) => {
+		db.query(sql).then(_vips => {
 
 			resolve(_vips)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
+    		reject(`Erreur lors de la récupération de l'ensemble des Vips.`)
+
+		})
+	}
+)
+
+module.exports.update = (vip) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `UPDATE vip SET VIP_NOM = :nom,
+				   VIP_PRENOM = :prenom, VIP_SEXE = :sexe,
+        		   VIP_NAISSANCE = :naissance, VIP_TEXTE = :biographie,
+        		   NATIONALITE_NUMERO = :nationalite
+        		   FROM vip WHERE VIP_NUMERO = :id;`
+
+		db.query(sql, vip).then(res => {
+
+			resolve(!!res.affectedRows)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la modification de la Vip ${vip}.`)
+
+		})
+	}
+)
+
+module.exports.insert = (vip) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO vip SET ?;`
+
+		db.query(sql, {
+			VIP_NOM : vip.nom, 
+			VIP_PRENOM : vip.prenom, 
+			VIP_SEXE : vip.sexe, 
+			VIP_NAISSANCE : vip.naissance, 
+			VIP_TEXTE: vip.biographie, 
+			NATIONALITE_NUMERO: vip.nationalite,
+			VIP_DATE_INSERTION: new Date().toISOString().substr(0, 19).replace('T', ' ')
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion de la Vip ${vip}.`)
+
+		})
+	}
+)
+
+module.exports.findWithArticle = () => new Promise(
+	(resolve, reject) => {
+
+		let sql = `SELECT c.VIP_NUMERO AS id, VIP_NOM as nom,
+				   VIP_PRENOM as prenom, VIP_SEXE as sexe,
+        		   VIP_NAISSANCE as naissance, VIP_TEXTE as biographie,
+        		   NATIONALITE_NUMERO as nationalite
+        		   FROM vip v
+        		   JOIN comporte c ON c.VIP_NUMERO = v.VIP_NUMERO;`
+
+		db.query(sql).then(_vips => {
+
+			resolve(_vips)
+
+		}).catch(msg => {
+
+			console.error(msg)
     		reject(`Erreur lors de la récupération de l'ensemble des Vips.`)
 
 		})
@@ -123,7 +229,7 @@ module.exports.loadAttributes = (vip, attributes = new Set()) => new Promise(
 			// Photo principale.
 			(attributes.has('photo')) ? photoModel.findPhotoPrincipaleByVipId(vip.id) : defaultPromise(null),
 			// Photos
-			(attributes.has('photos')) ? photoModel.findByVipId(vip.id) : defaultPromise({}),
+			(attributes.has('photos')) ? photoModel.findByVipId(vip.id) : defaultPromise([]),
 			// Nationalité
 			(attributes.has('nationalité')) ? nationaliteModel.findById(vip.nationalite) : defaultPromise(vip.nationalite),
 			// Mariage
@@ -139,7 +245,7 @@ module.exports.loadAttributes = (vip, attributes = new Set()) => new Promise(
 			// Articles
 			(attributes.has('articles')) ? articleModel.findById(vip.id) : defaultPromise([]),
 
-		]).then((results) => {
+		]).then(results => {
 
 			vip.photo = results[0]
 			vip.photos = results[1]
@@ -161,9 +267,9 @@ module.exports.loadAttributes = (vip, attributes = new Set()) => new Promise(
 
 			resolve(vip)
 
-		}).catch((msg) => {
+		}).catch(msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors du chargement des attributs de la Vip ${vip.id}.`)
 		
 		})

@@ -1,6 +1,6 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 
-module.exports.findById = (id) => new Promise(
+module.exports.findById = id => new Promise(
 	(resolve, reject) => {
 
 		let sql = `SELECT MAISONDISQUE_NOM as nom,
@@ -8,13 +8,21 @@ module.exports.findById = (id) => new Promise(
 				   FROM maisondisque md
 				   WHERE MAISONDISQUE_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_maisondisque) => {
+		db.query(sql, [id]).then(_maisondisques => {
 
-			resolve(_maisondisque[0])
+			if (_maisondisques[0]){
 
-		}).catch((msg) => {
+				resolve(_maisondisques[0])
 
-			console.log(msg)
+			} else {
+
+				reject(`Maisondisque ${id} introuvable.`)
+
+			}
+
+		}).catch(msg => {
+
+			console.error(msg)
 			reject(`Erreur lors de la récupération de la maison de disque ${id}.`)
 
 		})

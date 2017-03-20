@@ -1,12 +1,12 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let filmModel = require(__dirname+'/film')
 
-module.exports.findByVipId = (id) => new Promise(
+module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 
-		let errorHandler = (msg) => {
+		let errorHandler = msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération de la profession de réalisateur de la Vip ${id}.`)
 
 		}
@@ -17,7 +17,7 @@ module.exports.findByVipId = (id) => new Promise(
 				   FROM realisateur
 				   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_realisateur) => {
+		db.query(sql, [id]).then(_realisateur => {
 
 			if (_realisateur.length == 0){
 				
@@ -28,7 +28,7 @@ module.exports.findByVipId = (id) => new Promise(
 
 			realisateur = _realisateur[0]
 
-			filmModel.findByRealisateurId(id).then((_films) => {
+			filmModel.findByRealisateurId(id).then(_films => {
 
 				realisateur.films = _films
 

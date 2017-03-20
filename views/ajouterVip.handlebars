@@ -1,0 +1,44 @@
+{{> vipsMenu}}
+
+<fieldset class="adminOnTheRight">
+
+	<legend>{{title}}</legend>
+
+	<form action="#" method="POST" encType="multipart/form-data">
+
+		<label for="nom">Nom* :</label>
+		<input type="text" name="nom" id="nom" required>
+
+		<label for="prenom">Prénom* :</label>
+		<input type="text" name="prenom" id="prenom" required>
+
+		<label for="sexe">Sexe :</label>
+		<select name="sexe" id="sexe">
+			<option value="M">Masculin</option>
+			<option value="F">Féminin</option>
+		</select>
+
+		<label for="naissance">Date de naissance :</label>
+		<input type="date" name="naissance" id="naissance">
+
+		<label for="nationalite">Nationalité :</label>
+		<select name="nationalite" id="nationalite">
+			{{#each nationalites}}
+				<option value="{{this.id}}">{{this.nom}}</option>
+			{{/each}}
+		</select>
+
+		<label for="biographie">Commentaire :</label>
+		<textarea name="biographie" id="biographie"></textarea>
+
+		<label for="photo">Sélectionner l'image :</label>
+		<input type="file" name="photo" id="photo" required>
+
+		<label for="sujet">Sujet :</label>
+		<textarea name="sujet" id="sujet"></textarea>
+
+		<button type="submit" value="submit">Créer</button>
+
+	</form>
+
+</fieldset>

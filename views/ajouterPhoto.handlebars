@@ -1,0 +1,33 @@
+{{> photosMenu}}
+
+<fieldset class="adminOnTheRight">
+
+	<legend>{{title}}</legend>
+
+	<form action="#" method="POST">
+
+		<label for="vip">Nom du VIP : </label>
+
+		<select name="vip" id="vip">
+
+			{{#each vips}}
+				<option value="{{this.id}}">{{this.nom}} {{this.prenom}}</option>
+			{{/each}}
+
+		</select>
+
+		<label for="photo">Sélectionner l'image :</label>
+		<input type="file" name="photo" id="photo">
+
+		<label for="sujet">Sujet :</label>
+		<input type="text" name="sujet" id="sujet"></input>
+
+		<label for="commentaire">Un petit commentaire ?</label>
+		<textarea name="commentaire" id="commentaire"></textarea>
+
+		<button type="submit" value="submit">Envoyer</button>
+		<button type="reset" value="reset">Annuler</button>
+
+	</form>
+
+</fieldset>

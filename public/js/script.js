@@ -1,4 +1,4 @@
-
+/*
 // on formate la bulle.
 document.write('<div id="bulle" class="infos_bulle"><div class="infos_bulle_haut"></div><div id="bulle_bas" class="infos_bulle_bas"></div></div>');
 // on met à jour la position de la bulle.
@@ -45,6 +45,7 @@ function close_bulle()
 /****************************
 *	ouverture d'une popup	*
 ****************************/
+/*
 function NewWindow(url,hauteur,largeur) {
 	var winl = (screen.width - largeur) / 2;
 	var wint = (screen.height - hauteur) / 2;
@@ -53,3 +54,4 @@ function NewWindow(url,hauteur,largeur) {
 	winprops = 'height='+hauteur+',width='+largeur+',top='+wint+',left='+winl+',scrollbars=1,resizable'
 	win = window.open(url, time, winprops)
 	}
+*/

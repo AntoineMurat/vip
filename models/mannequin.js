@@ -2,12 +2,12 @@ let db = require(__dirname+'/../dbPromiseWrapper')
 let agenceModel = require(__dirname+'/agence')
 let defileModel = require(__dirname+'/defile')
 
-module.exports.findByVipId = (id) => new Promise(
+module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 
-		let errorHandler = (msg) => {
+		let errorHandler = msg => {
 
-			console.log(msg)
+			console.error(msg)
 			reject(`Erreur lors de la récupération de la profession de mannequin de la Vip ${id}.`)
 
 		}
@@ -19,7 +19,7 @@ module.exports.findByVipId = (id) => new Promise(
 				   FROM mannequin
 				   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, [id]).then((_mannequin) => {
+		db.query(sql, [id]).then(_mannequin => {
 
 			if (_mannequin.length == 0){
 				
@@ -36,7 +36,7 @@ module.exports.findByVipId = (id) => new Promise(
 
 				defileModel.findByMannequinId(id)
 
-			]).then((results) => {
+			]).then(results => {
 
 				mannequin.agences = results[0]
 				mannequin.defiles = results[1]
