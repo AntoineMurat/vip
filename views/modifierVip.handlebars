@@ -21,7 +21,7 @@
 		</select>
 
 		<label for="naissance">Date de naissance :</label>
-		<input type="date" name="naissance" id="naissance" value="{{vip.naissance}}">
+		<input type="date" name="naissance" id="naissance" value="{{formatDate vip.naissance 'YYYY-MM-DD'}}">
 
 		<label for="nationalite">Nationalité :</label>
 		<select name="nationalite" id="nationalite">
