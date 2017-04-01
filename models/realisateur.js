@@ -40,3 +40,25 @@ module.exports.findByVipId = id => new Promise(
 
 	}
 )
+
+module.exports.insert = (realisateur, films = array()) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO realisateur SET ?;`
+
+		db.query(sql, {
+			VIP_NUMERO : realisateur.id
+		}).then(res => {
+
+			let tabFilms = films.map(film => filmModel.insert(film))
+
+			return Promise.All(tabFilms)
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion du réalisateur ${realisateur.id}.`)
+
+		})
+	}
+)

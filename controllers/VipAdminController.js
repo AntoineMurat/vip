@@ -2,6 +2,8 @@ let crypto = require('crypto')
 let vipModel = require(__dirname+"/../models/vip")
 let photoModel = require(__dirname+"/../models/photo")
 let nationaliteModel = require(__dirname+"/../models/nationalite")
+let realisateurModel = require(__dirname+"/../models/realisateur")
+let chanteurModel = require(__dirname+"/../models/chanteur")
 
 module.exports.Ajouter = (req, res) => {
 
@@ -90,9 +92,46 @@ module.exports.Supprimer = (req, res) => {
 
 module.exports.AjouterPOST = (req, res) => {
 
-	vipModel.insert(req.body).then(id => {
+	let id
+	
+	vipModel.insert(req.body).then(_id => {
 
-		req.body.vip = id;
+		id =_id
+
+		return Promise.all([
+
+				realisateurModel.insert(
+						{id : id},
+						[{
+							titre : 'nouveauFilm',
+							date : '1111-11-11',
+							realisateur : id
+						}]
+					),
+				acteurModel.insert(
+						{id : id, debut : '1111-11-11'},
+						[{
+							idFilm : 12,
+							role_nom : 'servant',
+							acteur : id
+						}]
+					),
+				chanteurModel.insert(
+						{id : id, specialite : 'tro fort'},
+						[{
+							id : 1,
+							maisonDisque : 1,
+							titre : 'la joyeuse',
+							date : '2222-22-22'
+						}]
+					)
+
+			])
+
+	}).then(() => {
+
+		console.log(id)
+		req.body.vip = id
 		req.body.adresse = crypto.createHash('sha256').update(''+Math.random()).digest('hex').slice(32)+"."+req.files.photo.name.split('.')[1]
 
 		req.files.photo.mv(__dirname+'/../public/images/vip/'+req.body.adresse, err => {

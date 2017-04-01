@@ -1,6 +1,50 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let vipModel = require(__dirname+'/vip')
 
+module.exports.insertActeur = (joue) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO joue SET ?;`
+
+		db.query(sql, {
+			FILM_TITRE : joue.idFilm, 
+			ROLE_NOM : joue.role_nom, 
+			VIP_NUMERO : joue.acteur
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion de l'acteur dans le film ${joue.id}.`)
+
+		})
+	}
+)
+
+module.exports.insert = (film) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO film SET ?;`
+
+		db.query(sql, {
+			FILM_TITRE : film.titre, 
+			FILM_DATEREALISATION : film.date, 
+			VIP_NUMERO : film.realisateur
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion du film ${film.id}.`)
+
+		})
+	}
+)
+
 module.exports.findByRealisateurId = id => new Promise(
 	(resolve, reject) => {
 
