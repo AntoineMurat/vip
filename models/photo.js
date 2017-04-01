@@ -17,7 +17,7 @@ module.exports.findByVipId = id => new Promise(
 
 	    }).catch(msg => {
 
-	    	console.log(msg)
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération des photos de la Vip ${id}.`)
 	    
 	    })
@@ -50,7 +50,7 @@ module.exports.insert = photo => new Promise(
 
 	    }).catch(msg => {
 
-	    	console.log(msg)
+	    	console.error(msg)
 	        reject(`Erreur lors de la récupération des photos de la Vip ${id}.`)
 	    
 	    })
@@ -74,6 +74,24 @@ module.exports.removeByVipById = (vip, id) => new Promise(
 				reject(`Photo ${id} introuvable.`)
 
 			}
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression de la photo ${id}.`)
+
+		})
+	}
+)
+
+module.exports.removeByVip = (vip) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `DELETE FROM photo WHERE VIP_NUMERO = ?;`
+
+	    db.query(sql, [vip, id]).then(res => {
+
+	    	resolve(true)
 
 		}).catch(msg => {
 

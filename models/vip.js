@@ -141,13 +141,23 @@ module.exports.find = () => new Promise(
 module.exports.update = (vip) => new Promise(
 	(resolve, reject) => {
 
-		let sql = `UPDATE vip SET VIP_NOM = :nom,
-				   VIP_PRENOM = :prenom, VIP_SEXE = :sexe,
-        		   VIP_NAISSANCE = :naissance, VIP_TEXTE = :biographie,
-        		   NATIONALITE_NUMERO = :nationalite
-        		   FROM vip WHERE VIP_NUMERO = :id;`
+		let sql = `UPDATE vip SET VIP_NOM = ?,
+				   VIP_PRENOM = ?, VIP_SEXE = ?,
+        		   VIP_NAISSANCE = ?, VIP_TEXTE = ?,
+        		   NATIONALITE_NUMERO = ?
+        		   WHERE VIP_NUMERO = ?;`
 
-		db.query(sql, vip).then(res => {
+        console.log(vip)
+
+		db.query(sql, [
+			vip.nom, 
+			vip.prenom,
+			vip.sexe,
+			new Date(vip.naissance).toISOString().substr(0, 19).replace('T', ' '),
+			vip.biographie,
+			vip.nationalite,
+			vip.id
+		]).then(res => {
 
 			resolve(!!res.affectedRows)
 

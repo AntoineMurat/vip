@@ -2,12 +2,28 @@ let crypto = require('crypto')
 let vipModel = require(__dirname+"/../models/vip")
 let photoModel = require(__dirname+"/../models/photo")
 let nationaliteModel = require(__dirname+"/../models/nationalite")
+let maisondisqueModel = require(__dirname+"/../models/maisondisque")
+let filmModel = require(__dirname+"/../models/film")
+let agenceModel = require(__dirname+"/../models/agence")
+let defileModel = require(__dirname+"/../models/defile")
 
 module.exports.Ajouter = (req, res) => {
 
-	nationaliteModel.find().then(nationalites => {
+	Promise.all([
+		nationaliteModel.find(),
+		maisondisqueModel.find(),
+		vipModel.find(),
+		filmModel.find(),
+		agenceModel.find(),
+		defileModel.find()
+	]).then(results => {
 
-		res.nationalites = nationalites
+		[res.nationalites,
+		 res.maisonsDisque, 
+		 res.vips, 
+		 res.films, 
+		 res.agences, 
+		 res.defiles] = results
 
 		res.title = "Ajout d'une VIP."
 
@@ -134,7 +150,7 @@ module.exports.ModifierPOST = (req, res) => {
 
 	// On vérifie si on a envoyé l'image.
 
-	if (req.files.photo){
+	if (req.files && req.files.photo){
 
 		photoModel.removeByVipById(req.params.id, 1).then(() => 
 
@@ -170,7 +186,7 @@ module.exports.ModifierPOST = (req, res) => {
 
 		vipModel.update(req.body).then(() => {
 
-			res.redirect("/")
+			res.render("succes")
 
 		}).catch(msg => {
 
@@ -185,7 +201,11 @@ module.exports.ModifierPOST = (req, res) => {
 
 module.exports.SupprimerPOST = (req, res) => {
 
-	vipModel.removeById(req.body.vip).then(() => {
+	photoModel.removeByVip(req.body.vip).then(() =>
+
+		vipModel.removeById(req.body.vip)
+
+	).then( () => {
 
 		res.render("succes")
 

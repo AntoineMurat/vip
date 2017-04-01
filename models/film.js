@@ -1,6 +1,29 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let vipModel = require(__dirname+'/vip')
 
+module.exports.find = () => new Promise(
+	(resolve, reject) => {
+
+		let sql = `SELECT FILM_NUMERO as id,
+				   VIP_NUMERO as realisateur,
+				   FILM_TITRE as titre,
+				   FILM_DATEREALISATION as date
+				   FROM film;`
+
+		db.query(sql).then(_films => {
+
+			resolve(_films)
+
+		}).catch(msg => {
+
+			console.error(msg)
+			reject(`Erreur lors de la récupération des films.`)
+
+		})
+
+	}
+)
+
 module.exports.findByRealisateurId = id => new Promise(
 	(resolve, reject) => {
 

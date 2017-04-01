@@ -1,5 +1,26 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 
+module.exports.find = () => new Promise(
+	(resolve, reject) => {
+
+		let sql = `SELECT AGENCE_NOM as nom,
+				   AGENCE_NUMERO as id
+				   FROM agence;`
+
+		db.query(sql).then(_agences => {
+
+			resolve(_agences)
+
+		}).catch(msg => {
+
+			console.error(msg)
+			reject(`Erreur lors de la récupération des agences.`)
+
+		})
+
+	}
+)
+
 module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 

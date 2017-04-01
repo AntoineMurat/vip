@@ -6,6 +6,8 @@
 
 	<form action="#" method="POST" encType="multipart/form-data">
 
+		<h2>Général</h2>
+
 		<label for="nom">Nom* :</label>
 		<input type="text" name="nom" id="nom" required>
 
@@ -31,14 +33,149 @@
 		<label for="biographie">Commentaire :</label>
 		<textarea name="biographie" id="biographie"></textarea>
 
+		<h2>Photo</h2>
+
 		<label for="photo">Sélectionner l'image :</label>
 		<input type="file" name="photo" id="photo" required>
 
 		<label for="sujet">Sujet :</label>
 		<textarea name="sujet" id="sujet"></textarea>
 
-		<button type="submit" value="submit">Créer</button>
+		<h2>Liaisons</h2>
+
+			<div id="liaisons"></div>
+
+			<button class="add" data-dest="liaisons">Ajouter</button>
+			<button class="rm" data-dest="liaisons">Supprimer</button>
+
+		<h2>Mariages</h2>
+
+			<div id="mariages"></div>
+
+			<button class="add" data-dest="mariages">Ajouter</button>
+			<button class="rm" data-dest="mariages">Supprimer</button>
+
+		<h2>Réalisateur</h2>
+
+			<div id="realisateur"></div>
+
+			<button class="add" data-dest="realisateur">Ajouter</button>
+			<button class="rm" data-dest="realisateur">Supprimer</button>
+
+		<h2>Acteur</h2> Début de carrière : <input type="date" name="acteurDebut">
+
+			<div id="acteur"></div>
+
+			<button class="add" data-dest="acteur">Ajouter</button>
+			<button class="rm" data-dest="acteur">Supprimer</button>
+
+		<h2>Chanteur</h2> Spécialité : <input type="text" name="chanteurSpecialite">
+
+			<div id="chanteur"></div>
+
+			<button class="add" data-dest="chanteur">Ajouter</button>
+			<button class="rm" data-dest="chanteur">Supprimer</button>
+
+		<h2>Mannequin</h2> Taille : <input type="number" name="mannequinTaille">
+
+			<div id="mannequin"></div>
+
+			<button class="add" data-dest="mannequin">Ajouter</button>
+			<button class="rm" data-dest="mannequin">Supprimer</button>
+
+		<h2>Couturier</h2>
+
+			<div id="couturier"></div>
+
+			<button class="add" data-dest="couturier">Ajouter</button>
+			<button class="rm" data-dest="couturier">Supprimer</button>
+
+		<br><br><button type="submit" value="submit">Créer</button>
 
 	</form>
+
+	<script src="/js/jquery.js"></script>
+	<script>
+
+	$(function(){
+
+		const maisonsDisque = {{{json maisonsDisque}}}
+		const vips = {{{json vips}}}
+		const films = {{{json films}}}
+		const agences = {{{json agences}}}
+		const defiles = {{{json defiles}}}
+
+		const templates = { 
+
+			liaisons : `<div>
+				Conjoint : 
+				<select name="liaisonConjoint[]" required>
+					${ vips.map(vip => `<option value="${vip.id}">${vip.prenom} ${vip.nom}</option>`).join('') }
+				</select>
+				Date :
+				<input name="liaisonDate[]" type="date" required>
+				Motif de fin :
+				<input name="liaisonMotiffin[]" type="text" required></div>`,
+			mariages : `<div>
+				Conjoint : 
+				<select name="mariageConjoint[]" required>
+					${ vips.map(vip => `<option value="${vip.id}">${vip.prenom} ${vip.nom}</option>`).join('') }
+				</select>
+				Début :
+				<input name="mariageDebut[]" type="date" required>
+				Fin :
+				<input name="mariageFin[]" type="date" required>
+				Motif de fin :
+				<input name="mariageMotiffin[]" type="text" required></div>`,
+			realisateur : `<div>
+				Titre : 
+				<input name="filmTitre[]" type="text" required>
+				Date de réalisation :
+				<input name="filmDate[]" type="date" required></div>`,
+			acteur : `<div>
+				Film : 
+				<select name="filmId[]" required>
+					${ films.map(film => `<option value="${film.id}">${film.titre}</option>`).join('') }
+				</select>
+				Rôle :
+				<input name="filmRole[]" type="text" required></div>`,
+			chanteur : `<div>
+				Titre album : 
+				<input name="albumTitre[]" type="text" required>
+				Date :
+				<input name="albumDate[]" type="date" required>
+				<select name="albumMaisonDisque[]" required>
+					${ maisonsDisque.map(md => `<option value="${md.id}">${md.nom}</option>`).join('') }
+				</select></div>`,
+			mannequin : `<div>
+				Défilé : 
+				<select name="mannequinDefile[]" required>
+					${ defiles.map(defile => `<option value="${defile.id}">${defile.lieu} ${defile.date}</option>`).join('') }
+				</select></div>`,
+			couturier : `<div>
+				Lieu du defile : 
+				<input name="defileLieu[]" type="text" required>
+				Date du defile : 
+				<input name="defileDate[]" type="date" required></div>`
+
+		}
+
+		$(".add").click(function(e){
+			e.preventDefault()
+			let dest = $(this).data("dest")
+			$(`#${dest}`).append(templates[dest])
+		})
+
+		$(".rm").click(function(e){
+			e.preventDefault()
+			let dest = $(this).data("dest")
+			$(`#${dest}`).children().last().remove()
+		})
+
+		//$(".add").click()
+
+	})
+
+	</script>
 
 </fieldset>

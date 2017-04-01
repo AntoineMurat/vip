@@ -5,7 +5,7 @@
 	<legend>{{title}}</legend>
 
 	<select name="vip" id="vipPhotoDelete">
-		<option disabled>Sélectionnez un VIP...</option>
+		<option selected disabled>Sélectionnez un VIP...</option>
 		{{#each vips}}
 			<option value="{{this.id}}">{{this.nom}} {{this.prenom}}</option>
 		{{/each}}
@@ -19,8 +19,10 @@
 			{{#each this.photos}}
 
 				<form action="#" method="POST">
-					<img src="{{this.adresse}}">
-					<input type="hidden" value="{{this.id}}">
+					<img src="/images/vip/{{this.adresse}}" width="200px">
+					<input name="vip" type="hidden" value="{{../id}}">
+					<input name="id" type="hidden" value="{{this.numero}}">
+					<button type="submit" value="Supprimer">Supprimer</button>
 				</form>
 
 			{{/each}} 
@@ -28,5 +30,18 @@
 		</div>
 
 	{{/each}}
+
+	<script src="/js/jquery.js"></script>
+	<script>
+		$(function(){
+			$("#vipPhotoDelete").on("change", function(){
+
+				$(".listePhotos").hide()
+
+				$("#photos"+$(this).val()).show()
+
+			})
+		})
+	</script>
 
 </fieldset>

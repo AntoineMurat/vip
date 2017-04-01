@@ -1,6 +1,28 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let vipModel = require(__dirname+'/vip')
 
+module.exports.find = () => new Promise(
+	(resolve, reject) => {
+
+		let sql = `SELECT DEFILE_NUMERO as id,
+				   DEFILE_LIEU as lieu,
+				   DEFILE_DATE as date
+				   FROM defile;`
+
+		db.query(sql).then(_defiles => {
+
+			resolve(_defiles)
+
+		}).catch(msg => {
+
+			console.error(msg)
+			reject(`Erreur lors de la récupération des défilés.`)
+
+		})
+
+	}
+)
+
 module.exports.findByCouturierId = id => new Promise(
 	(resolve, reject) => {
 

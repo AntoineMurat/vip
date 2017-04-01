@@ -106,6 +106,10 @@ function hbsHelpers(handlebars) {
                     "/": lvalue / rvalue,
                     "%": lvalue % rvalue
                 }[operator];
+            },
+
+            json : function(context) {
+                return JSON.stringify(context);
             }
         }
     });

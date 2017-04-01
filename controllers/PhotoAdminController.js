@@ -1,3 +1,4 @@
+let crypto = require('crypto')
 let vipModel = require(__dirname+"/../models/vip")
 let photoModel = require(__dirname+"/../models/photo")
 
@@ -25,7 +26,7 @@ module.exports.Supprimer = (req, res) => {
 	vipModel.find().then(vips => {
 
 		return Promise.all(
-			vips.map((vip) => vipModel.loadAttributes(new Set('photos')))
+			vips.map((vip) => vipModel.loadAttributes(vip, new Set(['photos'])))
 		)
 
 	}).then(vips => {
@@ -77,7 +78,7 @@ module.exports.AjouterPOST = (req, res) => {
 
 module.exports.SupprimerPOST = (req, res) => {
 
-	photoModel.removeById(req.body.photo).then(() => {
+	photoModel.removeByVipById(req.body.vip, req.body.id).then(() => {
 
 		res.render("succes")
 
