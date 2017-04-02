@@ -1,6 +1,28 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let defileModel = require(__dirname+'/defile')
 
+module.exports.insert = (couturier, defiles = array()) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO couturier SET ?;`
+
+		db.query(sql, {
+			VIP_NUMERO : couturier.vip
+		}).then(res => {
+
+			let tabDefiles = defiles.map(defile => defileModel.insert(defile))
+
+			return Promise.All(tabDefiles)
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion du mannequin ${chanteur.vip}.`)
+
+		})
+	}
+)
+
 module.exports.findByVipId = id => new Promise(
 	(resolve, reject) => {
 

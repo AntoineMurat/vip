@@ -89,7 +89,7 @@ module.exports.removeByVip = (vip) => new Promise(
 
 		let sql = `DELETE FROM photo WHERE VIP_NUMERO = ?;`
 
-	    db.query(sql, [vip, id]).then(res => {
+	    db.query(sql, [vip]).then(res => {
 
 	    	resolve(true)
 

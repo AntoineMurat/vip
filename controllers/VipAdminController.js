@@ -6,6 +6,13 @@ let maisondisqueModel = require(__dirname+"/../models/maisondisque")
 let filmModel = require(__dirname+"/../models/film")
 let agenceModel = require(__dirname+"/../models/agence")
 let defileModel = require(__dirname+"/../models/defile")
+let realisateurModel = require(__dirname+"/../models/realisateur")
+let chanteurModel = require(__dirname+"/../models/chanteur")
+let acteurModel = require(__dirname+"/../models/acteur")
+let liaisonModel = require(__dirname+"/../models/liaison")
+let mariageModel = require(__dirname+"/../models/mariage")
+let mannequinModel = require(__dirname+"/../models/mannequin")
+let couturierModel = require(__dirname+"/../models/couturier")
 
 module.exports.Ajouter = (req, res) => {
 
@@ -106,9 +113,109 @@ module.exports.Supprimer = (req, res) => {
 
 module.exports.AjouterPOST = (req, res) => {
 
-	vipModel.insert(req.body).then(id => {
+	let id
+	
+	vipModel.insert(req.body).then(_id => {
 
-		req.body.vip = id;
+		id =_id
+
+		let todo = []
+
+		// Liaisons.
+
+		let liaisons = (!req.body.liaisonConjoint) ? [] : req.body.liaisonConjoint.map((conjoint, index) => ({
+				vip: id, 
+				conjoint: conjoint, 
+				date: req.body.liaisonDate[index],
+				motiffin: liaisonMotiffin[index]
+			}))
+
+		todo = [...todo, ...liaisons.map(liaison => liaisonModel.insert(liaison))]
+
+		// Mariages
+
+		let mariages = (!req.body.mariageConjoint) ? [] : req.body.mariageConjoint.map((conjoint, index) => ({
+				vip: id, 
+				conjoint: conjoint, 
+				lieu: req.body.mariageLieu[index],
+				debut: req.body.mariageDebut[index], 
+				fin: req.body.mariageFin[index],
+				motiffin: liaisonMotiffin[index]
+			}))
+
+		todo = [...todo, ...mariages.map(mariage => mariageModel.insert(mariage))]
+
+		// Réalisateur
+
+		let filmsRealises = (!req.body.filmTitre) ? [] : req.body.filmTitre.map((conjoint, index) => ({
+				vip: id, 
+				date: req.body.filmDate[index],
+				titre: req.body.filmTitre[index]
+			}))
+
+		if (filmsRealises.length)
+			todo.push(realisateurModel.insert(id, filmsRealises))
+
+		// Acteur acteurDebut
+
+		let joue = (!req.body.filmId) ? [] : req.body.filmId.map((filmdId, index) => ({
+				film: filmId,
+				role: req.body.filmRole[index],
+				vip: id
+			}))
+
+		if (joue.length)
+			todo.push(acteurModel.insert({
+				debut: req.body.acteurDebut,
+				vip: id
+			}, joue))
+
+		// Chanteur chanteurSpecialite
+
+		let albums = (!req.body.albumTitre) ? [] : req.body.albumTitre.map((titre, index) => ({
+				titre: titre,
+				date: req.body.albumDate[index],
+				maisondisque: req.body.albumMaisonDisque[index]
+			}))
+
+		if (albums.length)
+			todo.push(chanteurModel.insert({
+				vip: id,
+				specialite: req.body.specialite
+			}, albums))
+
+		// Mannequin mannequinTaille
+
+		let defilesParticipes = (!req.body.mannequinDefile) ? [] : req.body.mannequinDefile.map(defile => ({
+				defile: defile,
+				vip: id
+			}))
+
+		if (defilesParticipes.length)
+			todo.push(mannequinModel.insert({
+				vip: id,
+				taille: req.body.mannequinTaille
+			}, defilesParticipes))
+
+		// Couturier
+
+		let defiles = (!req.body.defileLieu) ? [] : req.body.defileLieu.map((lieu, index) => ({
+				lieu: lieu,
+				date: req.body.defileDate[index],
+				vip: vip
+			}))
+
+		if (defiles.length)
+			todo.push(couturierModel.insert({
+				vip: id
+			}, defiles))
+
+		return Promise.all(todo)
+
+	}).then(() => {
+
+		console.log(id)
+		req.body.vip = id
 		req.body.adresse = crypto.createHash('sha256').update(''+Math.random()).digest('hex').slice(32)+"."+req.files.photo.name.split('.')[1]
 
 		req.files.photo.mv(__dirname+'/../public/images/vip/'+req.body.adresse, err => {

@@ -1,6 +1,39 @@
 let db = require(__dirname+'/../dbPromiseWrapper')
 let vipModel = require(__dirname+'/vip')
 
+module.exports.insert = defile => new Promise(
+	(resolve, reject) => {
+		db.query(`INSERT INTO defile SET ?;`, {
+
+			DEFILE_LIEU: defile.lieu,
+			DEFILE_DATE: new Date(defile.date).toISOString().substr(0, 19).replace('T', ' '),
+			VIP_NUMERO: defile.vip
+
+		}).catch(msg => {
+
+			console.error(msg)
+			reject(`Erreur lors de l'insertion du défilé ${defile}.`)
+
+		})
+	}
+)
+
+module.exports.insertParticipant = participant => new Promise(
+	(resolve, reject) => {
+		db.query(`INSERT INTO defiledans SET ?;`, {
+
+			DEFILE_NUMERO: participant.defile,
+			VIP_NUMERO: participant.vip
+
+		}).catch(msg => {
+
+			console.error(msg)
+			reject(`Erreur lors de l'insertion de la participation au defile ${participant}.`)
+
+		})
+	}
+)
+
 module.exports.find = () => new Promise(
 	(resolve, reject) => {
 

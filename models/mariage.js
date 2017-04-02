@@ -38,3 +38,29 @@ module.exports.findByVipId = id => new Promise(
 
 	}
 )
+
+module.exports.insert = mariage => new Promise(
+	(resolve, reject) => {
+
+        let sql = `INSERT INTO liaisons SET ?;`
+
+		db.query(sql, {
+			VIP_NUMERO : mariage.vip,
+			VIP_VIP_NUMERO : mariage.conjoint,
+			DATE_EVENEMENT : new Date(mariage.debut).toISOString().substr(0, 19).replace('T', ' '),
+			MARIAGE_FIN : new Date(mariage.fin).toISOString().substr(0, 19).replace('T', ' '),
+			MARIAGE_LIEU : mariage.lieu,
+			LIAISON_MOTIFFIN : mariage.motiffin
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion de la liaison entre ${liaison.vip} et ${liaison.conjoint}.`)
+
+		})
+
+	}
+)

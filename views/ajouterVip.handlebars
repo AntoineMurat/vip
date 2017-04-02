@@ -62,7 +62,7 @@
 			<button class="add" data-dest="realisateur">Ajouter</button>
 			<button class="rm" data-dest="realisateur">Supprimer</button>
 
-		<h2>Acteur</h2> Début de carrière : <input type="date" name="acteurDebut">
+		<h2>Acteur</h2> Début de carrière : <input type="date" value="2017-04-07" name="acteurDebut">
 
 			<div id="acteur"></div>
 
@@ -76,7 +76,7 @@
 			<button class="add" data-dest="chanteur">Ajouter</button>
 			<button class="rm" data-dest="chanteur">Supprimer</button>
 
-		<h2>Mannequin</h2> Taille : <input type="number" name="mannequinTaille">
+		<h2>Mannequin</h2> Taille : <input type="number" value="180" name="mannequinTaille">
 
 			<div id="mannequin"></div>
 
@@ -121,6 +121,8 @@
 				<select name="mariageConjoint[]" required>
 					${ vips.map(vip => `<option value="${vip.id}">${vip.prenom} ${vip.nom}</option>`).join('') }
 				</select>
+				Lieu :
+				<input name="mariageLieu[]" type="text" required>
 				Début :
 				<input name="mariageDebut[]" type="date" required>
 				Fin :

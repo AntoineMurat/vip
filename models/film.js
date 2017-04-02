@@ -20,7 +20,51 @@ module.exports.find = () => new Promise(
 			reject(`Erreur lors de la récupération des films.`)
 
 		})
+	}
+)
 
+module.exports.insertActeur = (joue) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO joue SET ?;`
+
+		db.query(sql, {
+			FILM_NUMERO : joue.film, 
+			ROLE_NOM : joue.role, 
+			VIP_NUMERO : joue.vip
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+
+    		reject(`Erreur lors de l'insertion de l'acteur dans le film ${joue.film}.`)
+
+		})
+	}
+)
+
+module.exports.insert = (film) => new Promise(
+	(resolve, reject) => {
+
+		let sql = `INSERT INTO film SET ?;`
+
+		db.query(sql, {
+			FILM_TITRE : film.titre, 
+			FILM_DATEREALISATION : film.date, 
+			VIP_NUMERO : film.vip
+		}).then(res => {
+
+			resolve(res.insertId)
+
+		}).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de l'insertion du film ${film.titre}.`)
+
+		})
 	}
 )
 
