@@ -43,3 +43,25 @@ module.exports.findByVipId = id => new Promise(
 
 	}
 )
+
+module.exports.removeByVip = vip => new Promise(
+	(resolve, reject) => {
+
+        let sql = `DELETE FROM article WHERE ARTICLE_NUMERO IN (SELECT ARTICLE_NUMERO FROM apoursujet
+        		   WHERE VIP_NUMERO = ?);`
+
+		db.query(sql, [vip]).then(res => {
+
+			sql = `DELETE FROM apoursujet WHERE VIP_NUMERO = ?;`
+
+			return db.query(sql, [vip])
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression des articles relatifs à ${vip}.`)
+
+		})
+
+	}
+)

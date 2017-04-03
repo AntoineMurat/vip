@@ -12,12 +12,12 @@ module.exports.insert = (couturier, defiles = array()) => new Promise(
 
 			let tabDefiles = defiles.map(defile => defileModel.insert(defile))
 
-			return Promise.All(tabDefiles)
+			return Promise.all(tabDefiles)
 
 		}).then(() => resolve(true)).catch(msg => {
 
 			console.error(msg)
-    		reject(`Erreur lors de l'insertion du mannequin ${chanteur.vip}.`)
+    		reject(`Erreur lors de l'insertion du conturier ${couturier.vip}.`)
 
 		})
 	}
@@ -59,6 +59,27 @@ module.exports.findByVipId = id => new Promise(
 			}).catch(errorHandler)
 
 		}).catch(errorHandler)
+
+	}
+)
+
+module.exports.removeByVip = vip => new Promise(
+	(resolve, reject) => {
+
+        let sql = `DELETE FROM defile WHERE VIP_NUMERO = ?;`
+
+		db.query(sql, [vip]).then(res => {
+
+			sql = `DELETE FROM couturier WHERE VIP_NUMERO = ?;`
+
+			return db.query(sql, [vip])
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression du métier de couturier de ${vip}.`)
+
+		})
 
 	}
 )

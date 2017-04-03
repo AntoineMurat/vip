@@ -4,12 +4,12 @@ let vipModel = require(__dirname+'/vip')
 module.exports.insert = defile => new Promise(
 	(resolve, reject) => {
 		db.query(`INSERT INTO defile SET ?;`, {
-
+			DEFILE_NUMERO: Math.floor(Math.random()*10000),
 			DEFILE_LIEU: defile.lieu,
 			DEFILE_DATE: new Date(defile.date).toISOString().substr(0, 19).replace('T', ' '),
 			VIP_NUMERO: defile.vip
 
-		}).catch(msg => {
+		}).then(()=>{resolve(true)}).catch(msg => {
 
 			console.error(msg)
 			reject(`Erreur lors de l'insertion du défilé ${defile}.`)
@@ -25,7 +25,7 @@ module.exports.insertParticipant = participant => new Promise(
 			DEFILE_NUMERO: participant.defile,
 			VIP_NUMERO: participant.vip
 
-		}).catch(msg => {
+		}).then(()=>{resolve(true)}).catch(msg => {
 
 			console.error(msg)
 			reject(`Erreur lors de l'insertion de la participation au defile ${participant}.`)

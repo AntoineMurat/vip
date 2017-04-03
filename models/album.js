@@ -4,26 +4,28 @@ let maisondisqueModel = require(__dirname+'/maisondisque')
 module.exports.insert = album => new Promise(
 	(resolve, reject) => {
 
-		let sql = `INSERT INTO composer SET ?;`
-		
-		id =_id
-		
+		let sql = `INSERT INTO album SET ?;`
+		let albumNumero = Math.floor(Math.random()*1000000)
+
 		db.query(sql, {
-			VIP_NUMERO : album.id
+			MAISONDISQUE_NUMERO : album.maisondisque,
+			ALBUM_NUMERO: albumNumero,
+			ALBUM_TITRE : album.titre,
+			ALBUM_DATE : album.date
+
 		}).then(res => {
 
-			sql = `INSERT INTO album SET ?;`
-
-			db.query(sql, {
-				MAISONDISQUE_NUMERO : album.maisonDisque,
-				ALBUM_TITRE : album.titre,
-				ALBUM_DATE : album.date
+			sql = `INSERT INTO composer SET ?;`
+			
+			return db.query(sql, {
+				VIP_NUMERO : album.vip,
+				ALBUM_NUMERO : albumNumero
 			})
 
 		}).then(() => resolve(true)).catch(msg => {
 
 			console.error(msg)
-    		reject(`Erreur lors de l'insertion du réalisateur ${album.id}.`)
+    		reject(`Erreur lors de l'insertion de l'album ${album}.`)
 
 		})
 	}

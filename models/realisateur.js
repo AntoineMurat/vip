@@ -52,7 +52,7 @@ module.exports.insert = (realisateur, films = array()) => new Promise(
 
 			let tabFilms = films.map(film => filmModel.insert(film))
 
-			return Promise.All(tabFilms)
+			return Promise.all(tabFilms)
 
 		}).then(() => resolve(true)).catch(msg => {
 
@@ -60,5 +60,26 @@ module.exports.insert = (realisateur, films = array()) => new Promise(
     		reject(`Erreur lors de l'insertion du réalisateur ${realisateur.id}.`)
 
 		})
+	}
+)
+
+module.exports.removeByVip = vip => new Promise(
+	(resolve, reject) => {
+
+        let sql = `DELETE FROM film WHERE VIP_NUMERO = ?;`
+
+		db.query(sql, [vip]).then(res => {
+
+			sql = `DELETE FROM realisateur WHERE VIP_NUMERO = ?;`
+
+			return db.query(sql, [vip])
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression du métier de réalisateur de ${vip}.`)
+
+		})
+
 	}
 )

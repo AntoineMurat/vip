@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"couturier",
+				"couturierModel"
+			],
+			[
+				"mann",
+				"mannequinTaille"
+			],
+			[
+				"chanteur",
+				"chanteurModel〔variable〕"
+			],
+			[
+				"ac",
+				"acteurModel"
+			],
+			[
+				"filmR",
+				"filmsRealises"
+			],
+			[
+				"album",
+				"albumTitre"
+			],
+			[
+				"fil",
+				"filmId"
+			],
+			[
+				"film",
+				"films"
+			],
+			[
 				"b",
 				"body"
 			],
@@ -152,10 +184,6 @@
 				"DEFILE_NUMERO"
 			],
 			[
-				"album",
-				"albumModel〔variable〕"
-			],
-			[
 				"maiso",
 				"maisondisque"
 			],
@@ -166,10 +194,6 @@
 			[
 				"AGEN",
 				"AGENCE_NUMERO"
-			],
-			[
-				"film",
-				"filmModel〔variable〕"
 			],
 			[
 				"repo",
@@ -223,7 +247,16 @@
 			"file": "controllers/VipAdminController.js",
 			"settings":
 			{
-				"buffer_size": 3289,
+				"buffer_size": 6666,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/mannequin.js",
+			"settings":
+			{
+				"buffer_size": 1439,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -232,7 +265,7 @@
 			"file": "controllers/PhotoAdminController.js",
 			"settings":
 			{
-				"buffer_size": 1479,
+				"buffer_size": 1502,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -242,6 +275,42 @@
 			"settings":
 			{
 				"buffer_size": 1527,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/supprimerPhoto.handlebars",
+			"settings":
+			{
+				"buffer_size": 956,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/film.js",
+			"settings":
+			{
+				"buffer_size": 2487,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/defile.js",
+			"settings":
+			{
+				"buffer_size": 2363,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "helpers/handlebars.js",
+			"settings":
+			{
+				"buffer_size": 4828,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -259,7 +328,7 @@
 			"file": "views/ajouterPhoto.handlebars",
 			"settings":
 			{
-				"buffer_size": 778,
+				"buffer_size": 748,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -278,6 +347,15 @@
 			"settings":
 			{
 				"buffer_size": 1795,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/partials/photosMenu.handlebars",
+			"settings":
+			{
+				"buffer_size": 210,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -303,7 +381,7 @@
 			"file": "models/photo.js",
 			"settings":
 			{
-				"buffer_size": 3312,
+				"buffer_size": 3308,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -330,7 +408,97 @@
 			"file": "views/ajouterVip.handlebars",
 			"settings":
 			{
-				"buffer_size": 1174,
+				"buffer_size": 5208,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/liaison.js",
+			"settings":
+			{
+				"buffer_size": 1397,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/mariage.js",
+			"settings":
+			{
+				"buffer_size": 1564,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/realisateur.js",
+			"settings":
+			{
+				"buffer_size": 1225,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/acteur.js",
+			"settings":
+			{
+				"buffer_size": 1295,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/chanteur.js",
+			"settings":
+			{
+				"buffer_size": 1277,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/album.js",
+			"settings":
+			{
+				"buffer_size": 1408,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/maisondisque.js",
+			"settings":
+			{
+				"buffer_size": 935,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/couturier.js",
+			"settings":
+			{
+				"buffer_size": 1221,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/agence.js",
+			"settings":
+			{
+				"buffer_size": 829,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "controllers/VipController.js",
+			"settings":
+			{
+				"buffer_size": 2524,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -485,6 +653,9 @@
 		"/var/www/html/vip/controllers",
 		"/var/www/html/vip/helpers",
 		"/var/www/html/vip/models",
+		"/var/www/html/vip/public",
+		"/var/www/html/vip/public/images",
+		"/var/www/html/vip/public/images/vip",
 		"/var/www/html/vip/router",
 		"/var/www/html/vip/views",
 		"/var/www/html/vip/views/layouts",
@@ -631,6 +802,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".mariageConjoint",
+			".liaisonConjoint",
+			"liaisonConjoint",
+			"map",
+			"cha",
+			"chan",
+			"chanteurM",
+			"new Date",
+			"date",
+			"defille",
+			"jquery.js",
+			" value=\">",
+			"value=\">",
+			"manequin",
+			"join()",
+			"\"\"",
+			"exprots",
+			"consol",
+			"jquery",
+			"loadAttributes",
+			"photo/ajouter",
+			"photos/ajouter",
+			"/photos/ajouter",
+			"/photos/supprimer",
 			"console.",
 			"console.log(",
 			"console.log(msg)",
@@ -734,31 +929,7 @@
 			"return false",
 			"DD MMMM YYYY",
 			"this.sexe",
-			"debut",
-			"date",
-			"manequin",
-			"loadAttributes",
-			"liaisonModel.findByVipId",
-			"return Promise.all",
-			"d}`",
-			"d}.",
-			"vipId",
-			"from('BeConseils",
-			"resol",
-			"functi",
-			"star",
-			"getByFirstLetter",
-			"Arrete",
-			"arrete",
-			"photo",
-			"vip",
-			"Promise",
-			")=>{",
-			"réalisée par",
-			"guzzl",
-			"psr",
-			"function()",
-			"$("
+			"debut"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -766,6 +937,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"[\"mariageConjoint[]\"]",
+			"[\"liaisonConjoint[]\"]",
+			"defile",
+			">",
+			"mannequin",
+			"join('')",
+			"\"",
 			"console.error(msg)",
 			"res.render(\"succes\")",
 			"res.render(\"success\")",
@@ -856,7 +1034,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -865,7 +1043,38 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3289,
+						"buffer_size": 6666,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4724,
+								4724
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3290.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "models/mannequin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1439,
 						"regions":
 						{
 						},
@@ -887,24 +1096,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "controllers/PhotoAdminController.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1479,
+						"buffer_size": 1502,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								946,
-								946
+								590,
+								590
 							]
 						],
 						"settings":
@@ -915,14 +1124,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 225.0,
+						"translation.y": 675.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "views/layouts/admin.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -950,11 +1159,137 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
+					"file": "views/supprimerPhoto.handlebars",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 956,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								446,
+								446
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 28,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "models/film.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1591,
+								1591
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "models/defile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1049,
+								1049
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 675.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "helpers/handlebars.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4828,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4689,
+								4689
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "views/details.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -980,24 +1315,24 @@
 						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 38,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 9,
 					"file": "views/ajouterPhoto.handlebars",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 778,
+						"buffer_size": 748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								772,
-								772
+								190,
+								190
 							]
 						],
 						"settings":
@@ -1011,11 +1346,42 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 36,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
+					"file": "views/supprimerPhoto.handlebars",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 956,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								944,
+								944
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 35,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
 					"file": "views/succes.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -1042,11 +1408,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 40,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 11,
 					"file": "backend.js",
 					"semi_transient": false,
 					"settings":
@@ -1058,8 +1424,8 @@
 						"selection":
 						[
 							[
-								1021,
-								1021
+								471,
+								471
 							]
 						],
 						"settings":
@@ -1072,14 +1438,44 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 12,
+					"file": "views/partials/photosMenu.handlebars",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								194,
+								194
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 37,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
 					"file": "controllers/AdminController.js",
 					"semi_transient": false,
 					"settings":
@@ -1098,6 +1494,7 @@
 						"settings":
 						{
 							"apply_syntax_touched": true,
+							"history_list_is_closing": true,
 							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -1105,11 +1502,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 42,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 14,
 					"file": "router/backEndRouter.js",
 					"semi_transient": false,
 					"settings":
@@ -1137,45 +1534,42 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 15,
 					"file": "models/photo.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3312,
+						"buffer_size": 3308,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2292,
-								2292
-							],
-							[
-								2469,
-								2469
+								1878,
+								1878
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
 							"auto_complete": false,
+							"history_list_is_closing": true,
 							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 145.0,
+						"translation.y": 850.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 16,
 					"file": "models/vip.js",
 					"semi_transient": false,
 					"settings":
@@ -1203,11 +1597,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 17,
 					"file": "views/login.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -1234,44 +1628,45 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 41,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 12,
+					"buffer": 18,
 					"file": "views/ajouterVip.handlebars",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1174,
+						"buffer_size": 5208,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1129,
-								1129
+								2698,
+								2698
 							]
 						],
 						"settings":
 						{
 							"apply_syntax_touched": true,
 							"auto_complete": false,
+							"history_list_is_closing": true,
 							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 60.0,
+						"translation.y": 1860.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1280,15 +1675,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3289,
+						"buffer_size": 6666,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1542,
-								1542
+								869,
+								869
 							]
 						],
 						"settings":
@@ -1299,14 +1694,515 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1125.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 19,
+					"file": "models/liaison.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								727,
+								727
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "models/mariage.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								692,
+								692
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "models/realisateur.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1225,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								591
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 405.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "models/film.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								760,
+								760
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "models/acteur.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1295,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								705,
+								705
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "models/chanteur.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1277,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								97,
+								97
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "models/album.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1408,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								469,
+								469
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "controllers/PhotoAdminController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1502,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								394,
+								394
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "models/photo.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3308,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1603,
+								1603
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 29,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "models/maisondisque.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 935,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								380,
+								380
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "models/mannequin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								240
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "models/defile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								320,
+								320
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "models/couturier.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								98,
+								98
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "models/agence.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								284,
+								284
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "controllers/VipController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "models/vip.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6858,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3804,
+								3804
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2805.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 29,
 					"file": "views/modifierVip.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -1326,6 +2222,7 @@
 						{
 							"apply_syntax_touched": true,
 							"auto_complete": false,
+							"history_list_is_closing": true,
 							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -1333,11 +2230,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 39,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 11,
 					"file": "backend.js",
 					"semi_transient": false,
 					"settings":
@@ -1366,11 +2263,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 45,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "views/layouts/admin.handlebars",
 					"semi_transient": false,
 					"settings":
@@ -1398,11 +2295,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 44,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 14,
 					"file": "router/backEndRouter.js",
 					"semi_transient": false,
 					"settings":
@@ -1430,7 +2327,170 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 43,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 19,
+					"file": "models/liaison.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								859,
+								859
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 495.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "views/ajouterVip.handlebars",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5208,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4346,
+								4346
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "models/couturier.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								663,
+								663
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "models/acteur.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1295,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								362,
+								362
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "models/mariage.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								516,
+								516
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
 					"type": "text"
 				}
 			]
@@ -1459,12 +2519,19 @@
 				0,
 				2,
 				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.33,
+			0.66,
 			1.0
 		],
 		"rows":
@@ -1499,6 +2566,150 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ajouter",
+				"views/ajouterVip.handlebars"
+			],
+			[
+				"",
+				"controllers/VipAdminController.js"
+			],
+			[
+				"photo",
+				"models/photo.js"
+			],
+			[
+				"cout",
+				"models/couturier.js"
+			],
+			[
+				"man",
+				"models/mannequin.js"
+			],
+			[
+				"act",
+				"models/acteur.js"
+			],
+			[
+				"defi",
+				"models/defile.js"
+			],
+			[
+				"mann",
+				"models/mannequin.js"
+			],
+			[
+				"acte",
+				"models/acteur.js"
+			],
+			[
+				"chan",
+				"models/chanteur.js"
+			],
+			[
+				"acteur",
+				"models/acteur.js"
+			],
+			[
+				"reali",
+				"models/realisateur.js"
+			],
+			[
+				"liais",
+				"models/liaison.js"
+			],
+			[
+				"def",
+				"models/defile.js"
+			],
+			[
+				"albu",
+				"models/album.js"
+			],
+			[
+				"film",
+				"models/film.js"
+			],
+			[
+				"mari",
+				"models/mariage.js"
+			],
+			[
+				"vip",
+				"models/vip.js"
+			],
+			[
+				"vipa",
+				"controllers/VipAdminController.js"
+			],
+			[
+				"defil",
+				"models/defile.js"
+			],
+			[
+				"coutu",
+				"models/couturier.js"
+			],
+			[
+				"manne",
+				"models/mannequin.js"
+			],
+			[
+				"mais",
+				"models/maisondisque.js"
+			],
+			[
+				"alb",
+				"models/album.js"
+			],
+			[
+				"real",
+				"models/realisateur.js"
+			],
+			[
+				"maria",
+				"models/mariage.js"
+			],
+			[
+				"handle",
+				"helpers/handlebars.js"
+			],
+			[
+				"vipcon",
+				"controllers/VipController.js"
+			],
+			[
+				"agence",
+				"models/agence.js"
+			],
+			[
+				"photo.",
+				"models/photo.js"
+			],
+			[
+				"controll",
+				"controllers/PhotoAdminController.js"
+			],
+			[
+				"pho",
+				"models/photo.js"
+			],
+			[
+				"suppri",
+				"views/supprimerPhoto.handlebars"
+			],
+			[
+				"supp",
+				"views/supprimerPhoto.handlebars"
+			],
+			[
+				"vip.js",
+				"models/vip.js"
+			],
+			[
+				"ajouterphoto",
+				"views/ajouterPhoto.handlebars"
+			],
 			[
 				"vipadm",
 				"controllers/VipAdminController.js"
@@ -1536,16 +2747,8 @@
 				"backend.js"
 			],
 			[
-				"photo",
-				"models/photo.js"
-			],
-			[
 				"modifi",
 				"views/modifierVip.handlebars"
-			],
-			[
-				"ajouter",
-				"views/ajouterVip.handlebars"
 			],
 			[
 				"app",
@@ -1556,20 +2759,12 @@
 				"views/login.handlebars"
 			],
 			[
-				"vip",
-				"models/vip.js"
-			],
-			[
 				"parametre",
 				"models/parametres.js"
 			],
 			[
 				"unite",
 				"html/Evali-PTA2/src/BeConseils/ClientBundle/Entity/UniteTravail.php"
-			],
-			[
-				"agence",
-				"html/Evali-PTA2/src/BeConseils/ClientBundle/Entity/Agence.php"
 			]
 		],
 		"width": 0.0
@@ -1582,7 +2777,7 @@
 		[
 			[
 				"",
-				"~/Documents/sublime-workspaces/evali.sublime-workspace"
+				"~/Documents/sublime-workspaces/jugement.sublime-workspace"
 			],
 			[
 				"ev",
@@ -1600,7 +2795,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

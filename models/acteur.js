@@ -13,7 +13,7 @@ module.exports.insert = (acteur, joue = array()) => new Promise(
 
 			let tabActeur = joue.map(film => filmModel.insertActeur(film))
 
-			return Promise.All(tabActeur)
+			return Promise.all(tabActeur)
 
 		}).then(() => resolve(true)).catch(msg => {
 
@@ -61,6 +61,27 @@ module.exports.findByVipId = id => new Promise(
 			}).catch(errorHandler)
 
 		}).catch(errorHandler)
+
+	}
+)
+
+module.exports.removeByVip = vip => new Promise(
+	(resolve, reject) => {
+
+        let sql = `DELETE FROM joue WHERE VIP_NUMERO = ?;`
+
+		db.query(sql, [vip]).then(res => {
+
+			sql = `DELETE FROM acteur WHERE VIP_NUMERO = ?;`
+
+			return db.query(sql, [vip])
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression du métier de chanteur de ${vip}.`)
+
+		})
 
 	}
 )

@@ -1,8 +1,15 @@
 $(() => {
 
+	$(document).on("keydown", (e) => {
+		if (e.keyCode === 37)
+			return $("#previous").click()
+		if (e.keyCode === 39)
+			$("#next").click()
+	})
+
 	$(".photos.agrandir").click(e => {
 
-		let index = $(e.currentTarget).index()+1
+		let index = $(e.currentTarget).index()
 
 		let total = $(e.currentTarget).parent().children().length
 
@@ -16,7 +23,7 @@ $(() => {
 
 					 		${$(e.currentTarget).data('sujet')} -
 					 		${$(e.currentTarget).data('commentaire')}<br>
-					 		<small>Image ${index} sur ${total}</small>
+					 		<small>Image ${index+1} sur ${total}</small>
 					 	</p>
 
 					 </div>`)
@@ -33,7 +40,7 @@ $(() => {
 
 			$("#over").click()
 
-			$(".photos.agrandir:nth-of-type("+((index-1)%total+1)+")").click()
+			$(".photos.agrandir:nth-of-type("+((index)%total)+")").click()
 
 		})
 
@@ -41,7 +48,7 @@ $(() => {
 
 			$("#over").click()
 
-			$(".photos.agrandir:nth-of-type("+((index+1)%total+1)+")").click()
+			$(".photos.agrandir:nth-of-type("+((index)%total+2)+")").click()
 
 		})
 

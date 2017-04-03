@@ -87,16 +87,22 @@ module.exports.removeByVipById = (vip, id) => new Promise(
 module.exports.removeByVip = (vip) => new Promise(
 	(resolve, reject) => {
 
-		let sql = `DELETE FROM photo WHERE VIP_NUMERO = ?;`
+		let sql = `DELETE FROM comporte WHERE PHOTO_NUMERO IN (SELECT PHOTO_NUMERO FROM photo WHERE VIP_NUMERO = ?);`
 
 	    db.query(sql, [vip]).then(res => {
+
+	    	sql = `DELETE FROM photo WHERE VIP_NUMERO = ?;`
+
+	    	return db.query(sql, [vip])
+
+		}).then(res => {
 
 	    	resolve(true)
 
 		}).catch(msg => {
 
 			console.error(msg)
-    		reject(`Erreur lors de la suppression de la photo ${id}.`)
+    		reject(`Erreur lors de la suppression des photos de ${vip}.`)
 
 		})
 	}

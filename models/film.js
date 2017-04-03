@@ -52,6 +52,7 @@ module.exports.insert = (film) => new Promise(
 		let sql = `INSERT INTO film SET ?;`
 
 		db.query(sql, {
+			FILM_NUMERO: Math.floor(Math.random()*10000),
 			FILM_TITRE : film.titre, 
 			FILM_DATEREALISATION : film.date, 
 			VIP_NUMERO : film.vip

@@ -245,3 +245,30 @@ a  {
     right: 20px;
     bottom: 100px;
 }
+
+.adminMenu{
+    display: inline-block;
+    border-radius: 15px;
+    width: 100px;
+    vertical-align: top;
+    overflow: hidden;
+    border: 1px solid 
+}
+
+.adminMenu ul{
+    padding-left: 0;
+}
+
+.adminMenu li{
+    list-style: none;
+}
+
+.adminMenu .entete{
+    background-color: black;
+}
+
+.adminOnTheRight{
+    width: calc(100% - 250px);
+    display: inline-block;
+    vertical-align: top;
+}

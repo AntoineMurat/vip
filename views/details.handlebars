@@ -90,7 +90,7 @@ Cliquez sur une lettre :
 	{{#if vip.mariages.length}}
 		<b>Mariage(s) : </b>
 		{{#each vip.mariages}}
-			<a href="/vip/{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
+			<a href="/vip/{{this.conjoint.id}}" class="tooltip-trigger" data-id="{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
 			({{formatDate this.debut 'MMMM YYYY'}} - {{formatDate this.fin 'MMMM YYYY'}})
 			<b>lieu : </b>
 			{{this.lieu}}
@@ -103,7 +103,7 @@ Cliquez sur une lettre :
 	{{#if vip.liaisons.length}}
 		<b>Liaisons</b>
 		{{#each vip.liaisons}}
-			<a href="/vip/{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
+			<a href="/vip/{{this.conjoint.id}}"class="tooltip-trigger" data-id="{{this.conjoint.id}}">{{this.conjoint.prenom}} {{this.conjoint.nom}}</a>
 			({{formatDate this.date 'MMMM YYYY'}}) 
 			<b>motif :</b>
 			{{this.motiffin}}

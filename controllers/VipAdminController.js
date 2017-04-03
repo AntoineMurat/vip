@@ -13,6 +13,7 @@ let liaisonModel = require(__dirname+"/../models/liaison")
 let mariageModel = require(__dirname+"/../models/mariage")
 let mannequinModel = require(__dirname+"/../models/mannequin")
 let couturierModel = require(__dirname+"/../models/couturier")
+let articleModel = require(__dirname+"/../models/article")
 
 module.exports.Ajouter = (req, res) => {
 
@@ -114,53 +115,66 @@ module.exports.Supprimer = (req, res) => {
 module.exports.AjouterPOST = (req, res) => {
 
 	let id
+
+	console.log(req.body)
 	
 	vipModel.insert(req.body).then(_id => {
 
 		id =_id
 
+		// Corrige un bug de body-parser
+
+		Object.keys(req.body).forEach(key => {
+
+			if (key.slice(-2) === "[]" && !(req.body[key] instanceof Array))
+				req.body[key] = [req.body[key]]
+
+		})
+
 		let todo = []
 
 		// Liaisons.
 
-		let liaisons = (!req.body.liaisonConjoint) ? [] : req.body.liaisonConjoint.map((conjoint, index) => ({
+		let liaisons = (!req.body["liaisonConjoint[]"]) ? [] : req.body["liaisonConjoint[]"].map((conjoint, index) => ({
 				vip: id, 
 				conjoint: conjoint, 
-				date: req.body.liaisonDate[index],
-				motiffin: liaisonMotiffin[index]
+				date: req.body["liaisonDate[]"][index],
+				motiffin: req.body["liaisonMotiffin[]"][index]
 			}))
 
 		todo = [...todo, ...liaisons.map(liaison => liaisonModel.insert(liaison))]
 
 		// Mariages
 
-		let mariages = (!req.body.mariageConjoint) ? [] : req.body.mariageConjoint.map((conjoint, index) => ({
+		let mariages = (!req.body["mariageConjoint[]"]) ? [] : req.body["mariageConjoint[]"].map((conjoint, index) => ({
 				vip: id, 
 				conjoint: conjoint, 
-				lieu: req.body.mariageLieu[index],
-				debut: req.body.mariageDebut[index], 
-				fin: req.body.mariageFin[index],
-				motiffin: liaisonMotiffin[index]
+				lieu: req.body["mariageLieu[]"][index],
+				debut: req.body["mariageDebut[]"][index], 
+				fin: req.body["mariageFin[]"][index],
+				motiffin: req.body["mariageMotiffin[]"][index]
 			}))
 
 		todo = [...todo, ...mariages.map(mariage => mariageModel.insert(mariage))]
 
 		// Réalisateur
 
-		let filmsRealises = (!req.body.filmTitre) ? [] : req.body.filmTitre.map((conjoint, index) => ({
+		let filmsRealises = (!req.body["filmTitre[]"]) ? [] : req.body["filmTitre[]"].map((titre, index) => ({
 				vip: id, 
-				date: req.body.filmDate[index],
-				titre: req.body.filmTitre[index]
+				date: req.body["filmDate[]"][index],
+				titre: titre
 			}))
 
 		if (filmsRealises.length)
-			todo.push(realisateurModel.insert(id, filmsRealises))
+			todo.push(realisateurModel.insert({
+				id: id
+			}, filmsRealises))
 
 		// Acteur acteurDebut
 
-		let joue = (!req.body.filmId) ? [] : req.body.filmId.map((filmdId, index) => ({
+		let joue = (!req.body.filmId) ? [] : req.body["filmId[]"].map((filmdId, index) => ({
 				film: filmId,
-				role: req.body.filmRole[index],
+				role: req.body["filmRole[]"][index],
 				vip: id
 			}))
 
@@ -172,10 +186,11 @@ module.exports.AjouterPOST = (req, res) => {
 
 		// Chanteur chanteurSpecialite
 
-		let albums = (!req.body.albumTitre) ? [] : req.body.albumTitre.map((titre, index) => ({
+		let albums = (!req.body["albumTitre[]"]) ? [] : req.body["albumTitre[]"].map((titre, index) => ({
+				vip: id,
 				titre: titre,
-				date: req.body.albumDate[index],
-				maisondisque: req.body.albumMaisonDisque[index]
+				date: req.body["albumDate[]"][index],
+				maisondisque: req.body["albumMaisonDisque[]"][index]
 			}))
 
 		if (albums.length)
@@ -186,7 +201,7 @@ module.exports.AjouterPOST = (req, res) => {
 
 		// Mannequin mannequinTaille
 
-		let defilesParticipes = (!req.body.mannequinDefile) ? [] : req.body.mannequinDefile.map(defile => ({
+		let defilesParticipes = (!req.body["mannequinDefile[]"]) ? [] : req.body["mannequinDefile[]"].map(defile => ({
 				defile: defile,
 				vip: id
 			}))
@@ -199,10 +214,10 @@ module.exports.AjouterPOST = (req, res) => {
 
 		// Couturier
 
-		let defiles = (!req.body.defileLieu) ? [] : req.body.defileLieu.map((lieu, index) => ({
+		let defiles = (!req.body["defileLieu[]"]) ? [] : req.body["defileLieu[]"].map((lieu, index) => ({
 				lieu: lieu,
-				date: req.body.defileDate[index],
-				vip: vip
+				date: req.body["defileDate[]"][index],
+				vip: id
 			}))
 
 		if (defiles.length)
@@ -308,7 +323,19 @@ module.exports.ModifierPOST = (req, res) => {
 
 module.exports.SupprimerPOST = (req, res) => {
 
-	photoModel.removeByVip(req.body.vip).then(() =>
+	Promise.all([
+
+		photoModel.removeByVip(req.body.vip),
+		articleModel.removeByVip(req.body.vip),
+		liaisonModel.removeByVip(req.body.vip),
+		mariageModel.removeByVip(req.body.vip),
+		chanteurModel.removeByVip(req.body.vip),
+		acteurModel.removeByVip(req.body.vip),
+		mannequinModel.removeByVip(req.body.vip),
+		couturierModel.removeByVip(req.body.vip),
+		realisateurModel.removeByVip(req.body.vip)
+
+	]).then(() =>
 
 		vipModel.removeById(req.body.vip)
 

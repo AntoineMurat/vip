@@ -15,7 +15,7 @@ module.exports.Index = (req, res) => {
 module.exports.Deconnexion = (req, res) => {
 
 	if (req.session.login){
-		unset(req.session.login)
+		delete req.session.login
 	}
 
 	res.redirect('/')

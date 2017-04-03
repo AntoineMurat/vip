@@ -41,7 +41,7 @@ module.exports.findByVipId = id => new Promise(
 module.exports.insert = liaison => new Promise(
 	(resolve, reject) => {
 
-        let sql = `INSERT INTO liaisons SET ?;`
+        let sql = `INSERT INTO liaison SET ?;`
 
 		db.query(sql, {
 			VIP_NUMERO : liaison.vip,
@@ -56,6 +56,25 @@ module.exports.insert = liaison => new Promise(
 
 			console.error(msg)
     		reject(`Erreur lors de l'insertion de la liaison entre ${liaison.vip} et ${liaison.conjoint}.`)
+
+		})
+
+	}
+)
+
+module.exports.removeByVip = vip => new Promise(
+	(resolve, reject) => {
+
+        let sql = `DELETE FROM liaison WHERE VIP_NUMERO = ? OR VIP_VIP_NUMERO = ?;`
+
+		db.query(sql, [vip, vip]).then(res => {
+
+			resolve(res.affectedRows)
+
+		}).then(() => resolve(true)).catch(msg => {
+
+			console.error(msg)
+    		reject(`Erreur lors de la suppression des liaisons de ${vip} et ${conjoint}.`)
 
 		})
 
