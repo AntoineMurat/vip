@@ -61,9 +61,15 @@ module.exports.insert = photo => new Promise(
 module.exports.removeByVipById = (vip, id) => new Promise(
 	(resolve, reject) => {
 
-		let sql = `DELETE FROM photo WHERE VIP_NUMERO = ? AND PHOTO_NUMERO = ?;`
+		let sql = `DELETE FROM comporte WHERE PHOTO_NUMERO = ? AND VIP_NUMERO = ?;`
 
-	    db.query(sql, [vip, id]).then(res => {
+		db.query(sql, [id, vip]).then(res => {
+
+			sql = `DELETE FROM photo WHERE VIP_NUMERO = ? AND PHOTO_NUMERO = ?;`
+
+	    	return db.query(sql, [vip, id])
+
+	    }).then(res => {
 
 			if (res.affectedRows){
 
@@ -87,9 +93,9 @@ module.exports.removeByVipById = (vip, id) => new Promise(
 module.exports.removeByVip = (vip) => new Promise(
 	(resolve, reject) => {
 
-		let sql = `DELETE FROM comporte WHERE PHOTO_NUMERO IN (SELECT PHOTO_NUMERO FROM photo WHERE VIP_NUMERO = ?);`
+		let sql = `DELETE FROM comporte WHERE PHOTO_NUMERO IN (SELECT PHOTO_NUMERO FROM photo WHERE VIP_NUMERO = ?) AND VIP_NUMERO = ?;`
 
-	    db.query(sql, [vip]).then(res => {
+	    db.query(sql, [vip, vip]).then(res => {
 
 	    	sql = `DELETE FROM photo WHERE VIP_NUMERO = ?;`
 
